@@ -30,6 +30,7 @@ import javax.persistence.*;
 public class UserEntity {
     private final static Logger logger = LoggerFactory.getLogger(UserEntity.class);
     private String userId;
+    private String domainId;
     private String userName;
     private String createdTime;
     private String updatedTime;
@@ -43,6 +44,16 @@ public class UserEntity {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Id
+    @Column(name = "DOMAIN_ID")
+    public String getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
     }
 
     @Basic
@@ -83,6 +94,7 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (domainId != null ? !domainId.equals(that.domainId) : that.domainId != null) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) return false;
         if (updatedTime != null ? !updatedTime.equals(that.updatedTime) : that.updatedTime != null) return false;

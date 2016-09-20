@@ -30,6 +30,7 @@ import javax.persistence.*;
 public class PermissionTypeEntity {
     private final static Logger logger = LoggerFactory.getLogger(PermissionTypeEntity.class);
     private String permissionTypeId;
+    private String domainId;
     private String name;
     private String createdTime;
     private String updatedTime;
@@ -43,6 +44,16 @@ public class PermissionTypeEntity {
 
     public void setPermissionTypeId(String permissionTypeId) {
         this.permissionTypeId = permissionTypeId;
+    }
+
+    @Basic
+    @Column(name = "DOMAIN_ID")
+    public String getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
     }
 
     @Basic
@@ -84,6 +95,7 @@ public class PermissionTypeEntity {
 
         if (permissionTypeId != null ? !permissionTypeId.equals(that.permissionTypeId) : that.permissionTypeId != null)
             return false;
+        if (domainId != null ? !domainId.equals(that.domainId) : that.domainId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) return false;
         if (updatedTime != null ? !updatedTime.equals(that.updatedTime) : that.updatedTime != null) return false;

@@ -31,6 +31,8 @@ import java.util.Arrays;
 public class EntityEntity {
     private final static Logger logger = LoggerFactory.getLogger(EntityEntity.class);
     private String entityId;
+    private String domainId;
+    private String parentEntityId;
     private String name;
     private String description;
     private byte[] metadata;
@@ -48,6 +50,26 @@ public class EntityEntity {
 
     public void setEntityId(String entityId) {
         this.entityId = entityId;
+    }
+
+    @Basic
+    @Column(name = "DOMAIN_ID")
+    public String getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
+    }
+
+    @Basic
+    @Column(name = "PARENT_ENTITY_ID")
+    public String getParentEntityId() {
+        return parentEntityId;
+    }
+
+    public void setParentEntityId(String parentEntityId) {
+        this.parentEntityId = parentEntityId;
     }
 
     @Basic
@@ -118,6 +140,8 @@ public class EntityEntity {
         EntityEntity that = (EntityEntity) o;
 
         if (entityId != null ? !entityId.equals(that.entityId) : that.entityId != null) return false;
+        if (domainId != null ? !domainId.equals(that.domainId) : that.domainId != null) return false;
+        if (parentEntityId != null ? !parentEntityId.equals(that.parentEntityId) : that.parentEntityId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (!Arrays.equals(metadata, that.metadata)) return false;

@@ -30,8 +30,10 @@ import javax.persistence.*;
 public class UserGroupEntity {
     private final static Logger logger = LoggerFactory.getLogger(UserGroupEntity.class);
     private String groupId;
+    private String domainId;
     private String name;
     private String description;
+    private String ownerId;
     private String type;
     private String createdTime;
     private String updatedTime;
@@ -46,6 +48,26 @@ public class UserGroupEntity {
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
+    }
+
+    @Id
+    @Column(name = "DOMAIN_ID")
+    public String getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
+    }
+
+    @Id
+    @Column(name = "OWNER_ID")
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     @Basic
@@ -106,6 +128,8 @@ public class UserGroupEntity {
         UserGroupEntity that = (UserGroupEntity) o;
 
         if (groupId != null ? !groupId.equals(that.groupId) : that.groupId != null) return false;
+        if (domainId != null ? !domainId.equals(that.domainId) : that.domainId != null) return false;
+        if (ownerId != null ? !ownerId.equals(that.ownerId) : that.ownerId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;

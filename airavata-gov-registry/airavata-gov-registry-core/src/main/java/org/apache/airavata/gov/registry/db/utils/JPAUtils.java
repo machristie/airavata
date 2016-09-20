@@ -22,6 +22,7 @@ package org.apache.airavata.gov.registry.db.utils;
 
 import org.apache.airavata.common.exception.ApplicationSettingsException;
 import org.apache.airavata.common.utils.ServerSettings;
+import org.apache.airavata.gov.registry.models.GovRegistryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +47,7 @@ public class JPAUtils {
     @PersistenceContext(unitName = "airavata-gov-registry")
     private static EntityManager appCatEntityManager;
 
-    public static EntityManager getEntityManager() throws ApplicationSettingsException {
+    public static EntityManager getEntityManager() {
         if (factory == null) {
 //            String connectionProperties = "DriverClassName=" + readServerProperties(GOV_REG_JDBC_DRIVER) + "," +
 //                    "Url=" + readServerProperties(GOV_REG_JDBC_URL) + "?autoReconnect=true," +
@@ -76,12 +77,29 @@ public class JPAUtils {
         return appCatEntityManager;
     }
 
-    private static String readServerProperties(String propertyName) throws ApplicationSettingsException {
+    private static String readServerProperties(String propertyName) throws GovRegistryException {
         try {
             return ServerSettings.getSetting(propertyName);
         } catch (ApplicationSettingsException e) {
             logger.error("Unable to read airavata-server.properties...", e);
-            throw new ApplicationSettingsException("Unable to read airavata-server.properties...");
+            throw new GovRegistryException("Unable to read airavata-server.properties...");
+        }
+    }
+
+    public static <R> R execute(Committer<EntityManager, R> committer) throws GovRegistryException {
+        EntityManager entityManager = JPAUtils.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            R r = committer.commit(entityManager);
+            entityManager.getTransaction().commit();
+            return  r;
+        }finally {
+            if (entityManager != null && entityManager.isOpen()) {
+                if (entityManager.getTransaction().isActive()) {
+                    entityManager.getTransaction().rollback();
+                }
+                entityManager.close();
+            }
         }
     }
 }

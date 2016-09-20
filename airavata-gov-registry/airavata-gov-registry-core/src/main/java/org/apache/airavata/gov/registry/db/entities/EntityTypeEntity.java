@@ -30,6 +30,7 @@ import javax.persistence.*;
 public class EntityTypeEntity {
     private final static Logger logger = LoggerFactory.getLogger(EntityTypeEntity.class);
     private String entityTypeId;
+    private String domainId;
     private String name;
     private String description;
     private String createdTime;
@@ -44,6 +45,16 @@ public class EntityTypeEntity {
 
     public void setEntityTypeId(String entityTypeId) {
         this.entityTypeId = entityTypeId;
+    }
+
+    @Basic
+    @Column(name = "DOMAIN_ID")
+    public String getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
     }
 
     @Basic
@@ -94,6 +105,7 @@ public class EntityTypeEntity {
         EntityTypeEntity that = (EntityTypeEntity) o;
 
         if (entityTypeId != null ? !entityTypeId.equals(that.entityTypeId) : that.entityTypeId != null) return false;
+        if (domainId != null ? !domainId.equals(that.domainId) : that.domainId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) return false;
