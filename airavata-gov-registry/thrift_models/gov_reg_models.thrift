@@ -70,12 +70,13 @@ struct Entity {
     2: optional string domainId,
     3: optional string entityTypeId,
     4: optional string ownerId,
-    5: optional string name,
-    6: optional string description,
-    7: optional map<string,string> metadata,
-    8: optional string fullText,
-    9: optional i64 createdTime,
-    10: optional i64 updatedTime
+    5: optional string parentEntityId,
+    6: optional string name,
+    7: optional string description,
+    8: optional map<string,string> metadata,
+    9: optional string fullText,
+    10: optional i64 createdTime,
+    11: optional i64 updatedTime
 }
 
 struct PermissionType {

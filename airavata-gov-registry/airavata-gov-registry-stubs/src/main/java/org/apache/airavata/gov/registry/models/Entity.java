@@ -42,12 +42,13 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
   private static final org.apache.thrift.protocol.TField DOMAIN_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("domainId", org.apache.thrift.protocol.TType.STRING, (short)2);
   private static final org.apache.thrift.protocol.TField ENTITY_TYPE_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("entityTypeId", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField OWNER_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("ownerId", org.apache.thrift.protocol.TType.STRING, (short)4);
-  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)5);
-  private static final org.apache.thrift.protocol.TField DESCRIPTION_FIELD_DESC = new org.apache.thrift.protocol.TField("description", org.apache.thrift.protocol.TType.STRING, (short)6);
-  private static final org.apache.thrift.protocol.TField METADATA_FIELD_DESC = new org.apache.thrift.protocol.TField("metadata", org.apache.thrift.protocol.TType.MAP, (short)7);
-  private static final org.apache.thrift.protocol.TField FULL_TEXT_FIELD_DESC = new org.apache.thrift.protocol.TField("fullText", org.apache.thrift.protocol.TType.STRING, (short)8);
-  private static final org.apache.thrift.protocol.TField CREATED_TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("createdTime", org.apache.thrift.protocol.TType.I64, (short)9);
-  private static final org.apache.thrift.protocol.TField UPDATED_TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("updatedTime", org.apache.thrift.protocol.TType.I64, (short)10);
+  private static final org.apache.thrift.protocol.TField PARENT_ENTITY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("parentEntityId", org.apache.thrift.protocol.TType.STRING, (short)5);
+  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)6);
+  private static final org.apache.thrift.protocol.TField DESCRIPTION_FIELD_DESC = new org.apache.thrift.protocol.TField("description", org.apache.thrift.protocol.TType.STRING, (short)7);
+  private static final org.apache.thrift.protocol.TField METADATA_FIELD_DESC = new org.apache.thrift.protocol.TField("metadata", org.apache.thrift.protocol.TType.MAP, (short)8);
+  private static final org.apache.thrift.protocol.TField FULL_TEXT_FIELD_DESC = new org.apache.thrift.protocol.TField("fullText", org.apache.thrift.protocol.TType.STRING, (short)9);
+  private static final org.apache.thrift.protocol.TField CREATED_TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("createdTime", org.apache.thrift.protocol.TType.I64, (short)10);
+  private static final org.apache.thrift.protocol.TField UPDATED_TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("updatedTime", org.apache.thrift.protocol.TType.I64, (short)11);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -59,6 +60,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
   public String domainId; // optional
   public String entityTypeId; // optional
   public String ownerId; // optional
+  public String parentEntityId; // optional
   public String name; // optional
   public String description; // optional
   public Map<String,String> metadata; // optional
@@ -72,12 +74,13 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     DOMAIN_ID((short)2, "domainId"),
     ENTITY_TYPE_ID((short)3, "entityTypeId"),
     OWNER_ID((short)4, "ownerId"),
-    NAME((short)5, "name"),
-    DESCRIPTION((short)6, "description"),
-    METADATA((short)7, "metadata"),
-    FULL_TEXT((short)8, "fullText"),
-    CREATED_TIME((short)9, "createdTime"),
-    UPDATED_TIME((short)10, "updatedTime");
+    PARENT_ENTITY_ID((short)5, "parentEntityId"),
+    NAME((short)6, "name"),
+    DESCRIPTION((short)7, "description"),
+    METADATA((short)8, "metadata"),
+    FULL_TEXT((short)9, "fullText"),
+    CREATED_TIME((short)10, "createdTime"),
+    UPDATED_TIME((short)11, "updatedTime");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -100,17 +103,19 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
           return ENTITY_TYPE_ID;
         case 4: // OWNER_ID
           return OWNER_ID;
-        case 5: // NAME
+        case 5: // PARENT_ENTITY_ID
+          return PARENT_ENTITY_ID;
+        case 6: // NAME
           return NAME;
-        case 6: // DESCRIPTION
+        case 7: // DESCRIPTION
           return DESCRIPTION;
-        case 7: // METADATA
+        case 8: // METADATA
           return METADATA;
-        case 8: // FULL_TEXT
+        case 9: // FULL_TEXT
           return FULL_TEXT;
-        case 9: // CREATED_TIME
+        case 10: // CREATED_TIME
           return CREATED_TIME;
-        case 10: // UPDATED_TIME
+        case 11: // UPDATED_TIME
           return UPDATED_TIME;
         default:
           return null;
@@ -155,7 +160,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
   private static final int __CREATEDTIME_ISSET_ID = 0;
   private static final int __UPDATEDTIME_ISSET_ID = 1;
   private byte __isset_bitfield = 0;
-  private static final _Fields optionals[] = {_Fields.ENTITY_ID,_Fields.DOMAIN_ID,_Fields.ENTITY_TYPE_ID,_Fields.OWNER_ID,_Fields.NAME,_Fields.DESCRIPTION,_Fields.METADATA,_Fields.FULL_TEXT,_Fields.CREATED_TIME,_Fields.UPDATED_TIME};
+  private static final _Fields optionals[] = {_Fields.ENTITY_ID,_Fields.DOMAIN_ID,_Fields.ENTITY_TYPE_ID,_Fields.OWNER_ID,_Fields.PARENT_ENTITY_ID,_Fields.NAME,_Fields.DESCRIPTION,_Fields.METADATA,_Fields.FULL_TEXT,_Fields.CREATED_TIME,_Fields.UPDATED_TIME};
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -166,6 +171,8 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     tmpMap.put(_Fields.ENTITY_TYPE_ID, new org.apache.thrift.meta_data.FieldMetaData("entityTypeId", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.OWNER_ID, new org.apache.thrift.meta_data.FieldMetaData("ownerId", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.PARENT_ENTITY_ID, new org.apache.thrift.meta_data.FieldMetaData("parentEntityId", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
@@ -207,6 +214,9 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     if (other.isSetOwnerId()) {
       this.ownerId = other.ownerId;
     }
+    if (other.isSetParentEntityId()) {
+      this.parentEntityId = other.parentEntityId;
+    }
     if (other.isSetName()) {
       this.name = other.name;
     }
@@ -235,6 +245,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     this.domainId = null;
     this.entityTypeId = null;
     this.ownerId = null;
+    this.parentEntityId = null;
     this.name = null;
     this.description = null;
     this.metadata = null;
@@ -338,6 +349,30 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
   public void setOwnerIdIsSet(boolean value) {
     if (!value) {
       this.ownerId = null;
+    }
+  }
+
+  public String getParentEntityId() {
+    return this.parentEntityId;
+  }
+
+  public Entity setParentEntityId(String parentEntityId) {
+    this.parentEntityId = parentEntityId;
+    return this;
+  }
+
+  public void unsetParentEntityId() {
+    this.parentEntityId = null;
+  }
+
+  /** Returns true if field parentEntityId is set (has been assigned a value) and false otherwise */
+  public boolean isSetParentEntityId() {
+    return this.parentEntityId != null;
+  }
+
+  public void setParentEntityIdIsSet(boolean value) {
+    if (!value) {
+      this.parentEntityId = null;
     }
   }
 
@@ -528,6 +563,14 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
       }
       break;
 
+    case PARENT_ENTITY_ID:
+      if (value == null) {
+        unsetParentEntityId();
+      } else {
+        setParentEntityId((String)value);
+      }
+      break;
+
     case NAME:
       if (value == null) {
         unsetName();
@@ -593,6 +636,9 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     case OWNER_ID:
       return getOwnerId();
 
+    case PARENT_ENTITY_ID:
+      return getParentEntityId();
+
     case NAME:
       return getName();
 
@@ -630,6 +676,8 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
       return isSetEntityTypeId();
     case OWNER_ID:
       return isSetOwnerId();
+    case PARENT_ENTITY_ID:
+      return isSetParentEntityId();
     case NAME:
       return isSetName();
     case DESCRIPTION:
@@ -692,6 +740,15 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
       if (!(this_present_ownerId && that_present_ownerId))
         return false;
       if (!this.ownerId.equals(that.ownerId))
+        return false;
+    }
+
+    boolean this_present_parentEntityId = true && this.isSetParentEntityId();
+    boolean that_present_parentEntityId = true && that.isSetParentEntityId();
+    if (this_present_parentEntityId || that_present_parentEntityId) {
+      if (!(this_present_parentEntityId && that_present_parentEntityId))
+        return false;
+      if (!this.parentEntityId.equals(that.parentEntityId))
         return false;
     }
 
@@ -776,6 +833,11 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     if (present_ownerId)
       list.add(ownerId);
 
+    boolean present_parentEntityId = true && (isSetParentEntityId());
+    list.add(present_parentEntityId);
+    if (present_parentEntityId)
+      list.add(parentEntityId);
+
     boolean present_name = true && (isSetName());
     list.add(present_name);
     if (present_name)
@@ -853,6 +915,16 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     }
     if (isSetOwnerId()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.ownerId, other.ownerId);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetParentEntityId()).compareTo(other.isSetParentEntityId());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetParentEntityId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.parentEntityId, other.parentEntityId);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -973,6 +1045,16 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
         sb.append("null");
       } else {
         sb.append(this.ownerId);
+      }
+      first = false;
+    }
+    if (isSetParentEntityId()) {
+      if (!first) sb.append(", ");
+      sb.append("parentEntityId:");
+      if (this.parentEntityId == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.parentEntityId);
       }
       first = false;
     }
@@ -1105,7 +1187,15 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 5: // NAME
+          case 5: // PARENT_ENTITY_ID
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.parentEntityId = iprot.readString();
+              struct.setParentEntityIdIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 6: // NAME
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.name = iprot.readString();
               struct.setNameIsSet(true);
@@ -1113,7 +1203,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 6: // DESCRIPTION
+          case 7: // DESCRIPTION
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.description = iprot.readString();
               struct.setDescriptionIsSet(true);
@@ -1121,7 +1211,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 7: // METADATA
+          case 8: // METADATA
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
                 org.apache.thrift.protocol.TMap _map0 = iprot.readMapBegin();
@@ -1141,7 +1231,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 8: // FULL_TEXT
+          case 9: // FULL_TEXT
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.fullText = iprot.readString();
               struct.setFullTextIsSet(true);
@@ -1149,7 +1239,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 9: // CREATED_TIME
+          case 10: // CREATED_TIME
             if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
               struct.createdTime = iprot.readI64();
               struct.setCreatedTimeIsSet(true);
@@ -1157,7 +1247,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 10: // UPDATED_TIME
+          case 11: // UPDATED_TIME
             if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
               struct.updatedTime = iprot.readI64();
               struct.setUpdatedTimeIsSet(true);
@@ -1205,6 +1295,13 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
         if (struct.isSetOwnerId()) {
           oprot.writeFieldBegin(OWNER_ID_FIELD_DESC);
           oprot.writeString(struct.ownerId);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.parentEntityId != null) {
+        if (struct.isSetParentEntityId()) {
+          oprot.writeFieldBegin(PARENT_ENTITY_ID_FIELD_DESC);
+          oprot.writeString(struct.parentEntityId);
           oprot.writeFieldEnd();
         }
       }
@@ -1284,25 +1381,28 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
       if (struct.isSetOwnerId()) {
         optionals.set(3);
       }
-      if (struct.isSetName()) {
+      if (struct.isSetParentEntityId()) {
         optionals.set(4);
       }
-      if (struct.isSetDescription()) {
+      if (struct.isSetName()) {
         optionals.set(5);
       }
-      if (struct.isSetMetadata()) {
+      if (struct.isSetDescription()) {
         optionals.set(6);
       }
-      if (struct.isSetFullText()) {
+      if (struct.isSetMetadata()) {
         optionals.set(7);
       }
-      if (struct.isSetCreatedTime()) {
+      if (struct.isSetFullText()) {
         optionals.set(8);
       }
-      if (struct.isSetUpdatedTime()) {
+      if (struct.isSetCreatedTime()) {
         optionals.set(9);
       }
-      oprot.writeBitSet(optionals, 10);
+      if (struct.isSetUpdatedTime()) {
+        optionals.set(10);
+      }
+      oprot.writeBitSet(optionals, 11);
       if (struct.isSetEntityId()) {
         oprot.writeString(struct.entityId);
       }
@@ -1314,6 +1414,9 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
       }
       if (struct.isSetOwnerId()) {
         oprot.writeString(struct.ownerId);
+      }
+      if (struct.isSetParentEntityId()) {
+        oprot.writeString(struct.parentEntityId);
       }
       if (struct.isSetName()) {
         oprot.writeString(struct.name);
@@ -1345,7 +1448,7 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, Entity struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      BitSet incoming = iprot.readBitSet(10);
+      BitSet incoming = iprot.readBitSet(11);
       if (incoming.get(0)) {
         struct.entityId = iprot.readString();
         struct.setEntityIdIsSet(true);
@@ -1363,14 +1466,18 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
         struct.setOwnerIdIsSet(true);
       }
       if (incoming.get(4)) {
+        struct.parentEntityId = iprot.readString();
+        struct.setParentEntityIdIsSet(true);
+      }
+      if (incoming.get(5)) {
         struct.name = iprot.readString();
         struct.setNameIsSet(true);
       }
-      if (incoming.get(5)) {
+      if (incoming.get(6)) {
         struct.description = iprot.readString();
         struct.setDescriptionIsSet(true);
       }
-      if (incoming.get(6)) {
+      if (incoming.get(7)) {
         {
           org.apache.thrift.protocol.TMap _map6 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
           struct.metadata = new HashMap<String,String>(2*_map6.size);
@@ -1385,15 +1492,15 @@ public class Entity implements org.apache.thrift.TBase<Entity, Entity._Fields>, 
         }
         struct.setMetadataIsSet(true);
       }
-      if (incoming.get(7)) {
+      if (incoming.get(8)) {
         struct.fullText = iprot.readString();
         struct.setFullTextIsSet(true);
       }
-      if (incoming.get(8)) {
+      if (incoming.get(9)) {
         struct.createdTime = iprot.readI64();
         struct.setCreatedTimeIsSet(true);
       }
-      if (incoming.get(9)) {
+      if (incoming.get(10)) {
         struct.updatedTime = iprot.readI64();
         struct.setUpdatedTimeIsSet(true);
       }
