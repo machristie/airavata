@@ -46,7 +46,7 @@ public class UserEntity {
         this.userId = userId;
     }
 
-    @Id
+    @Basic
     @Column(name = "DOMAIN_ID")
     public String getDomainId() {
         return domainId;

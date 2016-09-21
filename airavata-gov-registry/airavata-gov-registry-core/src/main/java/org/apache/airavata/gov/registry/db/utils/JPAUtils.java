@@ -33,7 +33,7 @@ import java.util.Map;
 public class JPAUtils {
     private final static Logger logger = LoggerFactory.getLogger(JPAUtils.class);
 
-    private static final String PERSISTENCE_UNIT_NAME = "appcatalog_data";
+    private static final String PERSISTENCE_UNIT_NAME = "airavata-gov-registry";
     private static final String GOV_REG_JDBC_DRIVER = "appcatalog.jdbc.driver";
     private static final String GOV_REG_JDBC_URL = "appcatalog.jdbc.url";
     private static final String GOV_REG_JDBC_USER = "appcatalog.jdbc.user";
@@ -42,10 +42,10 @@ public class JPAUtils {
     private static final String JPA_CACHE_SIZE = "jpa.cache.size";
     private static final String JPA_CACHE_ENABLED = "cache.enable";
 
-    @PersistenceUnit(unitName = "airavata-gov-registry")
+    @PersistenceUnit(unitName = PERSISTENCE_UNIT_NAME)
     protected static EntityManagerFactory factory;
-    @PersistenceContext(unitName = "airavata-gov-registry")
-    private static EntityManager appCatEntityManager;
+    @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
+    private static EntityManager entityManager;
 
     public static EntityManager getEntityManager() {
         if (factory == null) {
@@ -55,7 +55,12 @@ public class JPAUtils {
 //                    "Password=" + readServerProperties(GOV_REG_JDBC_PWD) +
 //                    ",validationQuery=" + readServerProperties(GOV_REG_VALIDATION_QUERY);
 //
-            String connectionProperties = "jdbc:mysql://localhost:3306/airavata_gov_registry;create=true;user=root;password=";
+
+            String connectionProperties = "DriverClassName=com.mysql.jdbc.Driver," +
+                    "Url=jdbc:mysql://localhost:3306/airavata_gov_registry?autoReconnect=true," +
+                    "Username=root," +
+                    "Password=," +
+                    ",validationQuery=SELECT 1 FROM CONFIGURATION";
 
             Map<String, String> properties = new HashMap<String, String>();
             properties.put("openjpa.ConnectionDriverName", "org.apache.commons.dbcp.BasicDataSource");
@@ -71,10 +76,11 @@ public class JPAUtils {
             properties.put("openjpa.jdbc.QuerySQLCache", "false");
             properties.put("openjpa.ConnectionFactoryProperties", "PrettyPrint=true, PrettyPrintLineLength=72," +
                     " PrintParameters=true, MaxActive=10, MaxIdle=5, MinIdle=2, MaxWait=31536000,  autoReconnect=true");
+            properties.put("openjpa.RuntimeUnenhancedClasses", "warn");
             factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME, properties);
         }
-        appCatEntityManager = factory.createEntityManager();
-        return appCatEntityManager;
+        entityManager = factory.createEntityManager();
+        return entityManager;
     }
 
     private static String readServerProperties(String propertyName) throws GovRegistryException {
