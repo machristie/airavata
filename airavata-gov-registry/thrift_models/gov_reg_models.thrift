@@ -43,7 +43,7 @@ enum GroupType {
     MULTI_USER
 }
 
- struct Group {
+ struct UserGroup {
      1: optional string groupId = DO_NOT_SET_AT_CLIENTS_ID,
      2: optional string domainId,
      3: optional string name,

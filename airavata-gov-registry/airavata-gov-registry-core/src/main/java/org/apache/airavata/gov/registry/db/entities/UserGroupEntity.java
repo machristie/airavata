@@ -50,7 +50,7 @@ public class UserGroupEntity {
         this.groupId = groupId;
     }
 
-    @Id
+    @Basic
     @Column(name = "DOMAIN_ID")
     public String getDomainId() {
         return domainId;
@@ -60,7 +60,7 @@ public class UserGroupEntity {
         this.domainId = domainId;
     }
 
-    @Id
+    @Basic
     @Column(name = "OWNER_ID")
     public String getOwnerId() {
         return ownerId;

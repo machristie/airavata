@@ -45,11 +45,11 @@ service GovRegistryService {
     /**
      * Group Operations
     **/
-    bool createGroup(1: required gov_reg_models.Group group) throws (1: gov_reg_models.GovRegistryException gre)
-    bool updateGroup(1: required gov_reg_models.Group group) throws (1: gov_reg_models.GovRegistryException gre)
+    bool createGroup(1: required gov_reg_models.UserGroup group) throws (1: gov_reg_models.GovRegistryException gre)
+    bool updateGroup(1: required gov_reg_models.UserGroup group) throws (1: gov_reg_models.GovRegistryException gre)
     bool deleteGroup(1: required string groupId) throws (1: gov_reg_models.GovRegistryException gre)
-    gov_reg_models.Group getGroup(1: required string groupId) throws (1: gov_reg_models.GovRegistryException gre)
-    list<gov_reg_models.Group> getGroups(1: required string domain, 2: required i32 offset, 3: required i32 limit)
+    gov_reg_models.UserGroup getGroup(1: required string groupId) throws (1: gov_reg_models.GovRegistryException gre)
+    list<gov_reg_models.UserGroup> getGroups(1: required string domain, 2: required i32 offset, 3: required i32 limit)
 
     bool addUsersToGroup(1: required list<string> userIds, 2: required string groupId) throws (1: gov_reg_models.GovRegistryException gre);
     bool removeUsersFromGroup(1: required list<string> userIds, 2: required string groupId) throws (1: gov_reg_models.GovRegistryException gre);

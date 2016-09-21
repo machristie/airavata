@@ -22,6 +22,7 @@ package org.apache.airavata.gov.registry.db.repositories;
 
 import org.apache.airavata.gov.registry.db.utils.JPAUtils;
 import org.apache.airavata.gov.registry.db.utils.ObjectMapperSingleton;
+import org.apache.airavata.gov.registry.db.utils.QueryGenerator;
 import org.apache.airavata.gov.registry.models.GovRegistryException;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
@@ -29,16 +30,19 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public abstract class AbstractRepository<T, E, Id> {
     private final static Logger logger = LoggerFactory.getLogger(AbstractRepository.class);
 
     private Class<T> thriftGenericClass;
     private Class<E> dbEntityGenericClass;
+    private QueryGenerator queryGenerator;
 
     public AbstractRepository(Class<T> thriftGenericClass, Class<E> dbEntityGenericClass){
         this.thriftGenericClass = thriftGenericClass;
         this.dbEntityGenericClass = dbEntityGenericClass;
+        this.queryGenerator = new QueryGenerator(dbEntityGenericClass.getSimpleName());
     }
 
     public T create(T t) throws GovRegistryException {
@@ -68,9 +72,11 @@ public abstract class AbstractRepository<T, E, Id> {
         return mapper.map(entity, thriftGenericClass);
     }
 
-    public List<T> select(String query, int limit, int offset) throws GovRegistryException {
-        List resultSet = JPAUtils.execute(entityManager -> entityManager.createQuery(query).setFirstResult(offset)
-                .setMaxResults(offset).getResultList());
+    public List<T> select(Map<String, String> filters, int offset, int limit) throws GovRegistryException {
+        String queryString = queryGenerator.getSelectQuery(filters);
+
+        List resultSet = JPAUtils.execute(entityManager -> entityManager.createQuery(queryString).setFirstResult(offset)
+                .setMaxResults(limit).getResultList());
         Mapper mapper = ObjectMapperSingleton.getInstance();
         List<T> gatewayList = new ArrayList<>();
         resultSet.stream().forEach(rs -> gatewayList.add(mapper.map(rs, thriftGenericClass)));
