@@ -4,8 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <artifactId>airavata</artifactId>
+        <groupId>org.apache.airavata</groupId>
+        <relativePath>../pom.xml</relativePath>
+        <version>0.17-SNAPSHOT</version>
+    </parent>
+
     <groupId>org.apache.airavata</groupId>
-    <artifactId>gov-registry</artifactId>
+    <artifactId>airavata-sharing-registry</artifactId>
     <packaging>pom</packaging>
     <version>${global.version}</version>
 
@@ -14,7 +21,7 @@
     </properties>
 
     <modules>
-        <module>airavata-gov-registry-stubs</module>
-        <module>airavata-gov-registry-core</module>
+        <module>airavata-sharing-registry-stubs</module>
+        <module>airavata-sharing-registry-core</module>
     </modules>
 </project>
