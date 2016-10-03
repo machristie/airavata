@@ -54,4 +54,14 @@ public class DBConstants {
         public static String CHILD_ID = "childId";
         public static String CHILD_TYPE = "childType";
     }
+
+    public static class EntityTypeTable {
+        public static String ENTITY_TYPE_ID = "entityTypeId";
+        public static String DOMAIN_ID = "domainId";
+    }
+
+    public static class PermissionTypeTable {
+        public static String ENTITY_TYPE_ID = "permissionTypeId";
+        public static String DOMAIN_ID = "domainId";
+    }
 }

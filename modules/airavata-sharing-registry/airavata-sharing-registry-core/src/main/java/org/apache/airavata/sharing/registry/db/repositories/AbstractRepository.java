@@ -116,10 +116,9 @@ public abstract class AbstractRepository<T, E, Id> {
     }
 
     private String getSelectQuery(Map<String, String> filters){
-        String query = "SELECT p from " + dbEntityGenericClass.getSimpleName() + " as p WHERE ";
-        if(filters == null || filters.size() == 0){
-            query +=  "1";
-        }else{
+        String query = "SELECT p from " + dbEntityGenericClass.getSimpleName() + " as p";
+        if(filters != null && filters.size() != 0){
+            query += " WHERE ";
             for(String k : filters.keySet()){
                 query += "p." + k + " LIKE '%" + filters.get(k) + "%' AND ";
             }

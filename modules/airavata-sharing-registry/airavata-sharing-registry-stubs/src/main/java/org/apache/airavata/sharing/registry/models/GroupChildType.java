@@ -7,6 +7,10 @@
 package org.apache.airavata.sharing.registry.models;
 
 
+import java.util.Map;
+import java.util.HashMap;
+import org.apache.thrift.TEnum;
+
 public enum GroupChildType implements org.apache.thrift.TEnum {
   USER(0),
   GROUP(1);
