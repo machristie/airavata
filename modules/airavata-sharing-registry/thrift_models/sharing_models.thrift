@@ -102,12 +102,20 @@ struct PermissionType {
     6: optional i64 updatedTime
 }
 
+enum SharingType {
+    DIRECT,
+    INHERITED
+ }
+
 struct Sharing {
     1: optional string permissionTypeId,
     2: optional string entityId,
     3: optional string groupId,
-    4: optional i64 createdTime,
-    5: optional i64 updatedTime
+    4: optional GroupType groupType,
+    5: optional SharingType sharingType,
+    6: optional string inheritedPermissionTypeId,
+    7: optional i64 createdTime,
+    8: optional i64 updatedTime
 }
 
 exception GovRegistryException {

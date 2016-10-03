@@ -84,4 +84,12 @@ service GovRegistryService {
     bool deletePermissionType(1: required string entityTypeId) throws (1: sharing_models.GovRegistryException gre)
     sharing_models.PermissionType getPermissionType(1: required string permissionTypeId) throws (1: sharing_models.GovRegistryException gre)
     list<sharing_models.PermissionType> getPermissionTypes(1: required string domain, 2: required i32 offset, 3: required i32 limit) throws (1: sharing_models.GovRegistryException gre)
+
+    /**
+     * Sharing Entity with Users and Groups
+    **/
+    bool shareEntityWithUsers(1: required string entityId, 2: required list<string> userList, 3: required sharing_models.PermissionType perssionType) throws (1: sharing_models.GovRegistryException gre)
+    bool revokeEntitySharingFromUsers(1: required string entityId, 2: required list<string> userList, 3: required sharing_models.PermissionType perssionType) throws (1: sharing_models.GovRegistryException gre)
+    bool shareEntityWithGroups(1: required string entityId, 2: required list<string> groupList, 3: required sharing_models.PermissionType perssionType) throws (1: sharing_models.GovRegistryException gre)
+    bool revokeEntitySharingFromGroups(1: required string entityId, 2: required list<string> groupList, 3: required sharing_models.PermissionType perssionType) throws (1: sharing_models.GovRegistryException gre)
 }

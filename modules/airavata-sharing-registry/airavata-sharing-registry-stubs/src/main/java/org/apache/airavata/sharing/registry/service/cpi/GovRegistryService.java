@@ -145,6 +145,22 @@ public class GovRegistryService {
 
     public List<org.apache.airavata.sharing.registry.models.PermissionType> getPermissionTypes(String domain, int offset, int limit) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException;
 
+    /**
+     *  * Sharing Entity with Users and Groups
+     * *
+     * 
+     * @param entityId
+     * @param userList
+     * @param perssionType
+     */
+    public boolean shareEntityWithUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException;
+
+    public boolean revokeEntitySharingFromUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException;
+
+    public boolean shareEntityWithGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException;
+
+    public boolean revokeEntitySharingFromGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException;
+
   }
 
   public interface AsyncIface {
@@ -218,6 +234,14 @@ public class GovRegistryService {
     public void getPermissionType(String permissionTypeId, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
     public void getPermissionTypes(String domain, int offset, int limit, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+
+    public void shareEntityWithUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+
+    public void revokeEntitySharingFromUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+
+    public void shareEntityWithGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+
+    public void revokeEntitySharingFromGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -1165,6 +1189,118 @@ public class GovRegistryService {
         throw result.gre;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getPermissionTypes failed: unknown result");
+    }
+
+    public boolean shareEntityWithUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      send_shareEntityWithUsers(entityId, userList, perssionType);
+      return recv_shareEntityWithUsers();
+    }
+
+    public void send_shareEntityWithUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.thrift.TException
+    {
+      shareEntityWithUsers_args args = new shareEntityWithUsers_args();
+      args.setEntityId(entityId);
+      args.setUserList(userList);
+      args.setPerssionType(perssionType);
+      sendBase("shareEntityWithUsers", args);
+    }
+
+    public boolean recv_shareEntityWithUsers() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      shareEntityWithUsers_result result = new shareEntityWithUsers_result();
+      receiveBase(result, "shareEntityWithUsers");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      if (result.gre != null) {
+        throw result.gre;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "shareEntityWithUsers failed: unknown result");
+    }
+
+    public boolean revokeEntitySharingFromUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      send_revokeEntitySharingFromUsers(entityId, userList, perssionType);
+      return recv_revokeEntitySharingFromUsers();
+    }
+
+    public void send_revokeEntitySharingFromUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.thrift.TException
+    {
+      revokeEntitySharingFromUsers_args args = new revokeEntitySharingFromUsers_args();
+      args.setEntityId(entityId);
+      args.setUserList(userList);
+      args.setPerssionType(perssionType);
+      sendBase("revokeEntitySharingFromUsers", args);
+    }
+
+    public boolean recv_revokeEntitySharingFromUsers() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      revokeEntitySharingFromUsers_result result = new revokeEntitySharingFromUsers_result();
+      receiveBase(result, "revokeEntitySharingFromUsers");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      if (result.gre != null) {
+        throw result.gre;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "revokeEntitySharingFromUsers failed: unknown result");
+    }
+
+    public boolean shareEntityWithGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      send_shareEntityWithGroups(entityId, groupList, perssionType);
+      return recv_shareEntityWithGroups();
+    }
+
+    public void send_shareEntityWithGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.thrift.TException
+    {
+      shareEntityWithGroups_args args = new shareEntityWithGroups_args();
+      args.setEntityId(entityId);
+      args.setGroupList(groupList);
+      args.setPerssionType(perssionType);
+      sendBase("shareEntityWithGroups", args);
+    }
+
+    public boolean recv_shareEntityWithGroups() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      shareEntityWithGroups_result result = new shareEntityWithGroups_result();
+      receiveBase(result, "shareEntityWithGroups");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      if (result.gre != null) {
+        throw result.gre;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "shareEntityWithGroups failed: unknown result");
+    }
+
+    public boolean revokeEntitySharingFromGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      send_revokeEntitySharingFromGroups(entityId, groupList, perssionType);
+      return recv_revokeEntitySharingFromGroups();
+    }
+
+    public void send_revokeEntitySharingFromGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType) throws org.apache.thrift.TException
+    {
+      revokeEntitySharingFromGroups_args args = new revokeEntitySharingFromGroups_args();
+      args.setEntityId(entityId);
+      args.setGroupList(groupList);
+      args.setPerssionType(perssionType);
+      sendBase("revokeEntitySharingFromGroups", args);
+    }
+
+    public boolean recv_revokeEntitySharingFromGroups() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException
+    {
+      revokeEntitySharingFromGroups_result result = new revokeEntitySharingFromGroups_result();
+      receiveBase(result, "revokeEntitySharingFromGroups");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      if (result.gre != null) {
+        throw result.gre;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "revokeEntitySharingFromGroups failed: unknown result");
     }
 
   }
@@ -2362,6 +2498,158 @@ public class GovRegistryService {
       }
     }
 
+    public void shareEntityWithUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      shareEntityWithUsers_call method_call = new shareEntityWithUsers_call(entityId, userList, perssionType, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class shareEntityWithUsers_call extends org.apache.thrift.async.TAsyncMethodCall {
+      private String entityId;
+      private List<String> userList;
+      private org.apache.airavata.sharing.registry.models.PermissionType perssionType;
+      public shareEntityWithUsers_call(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.entityId = entityId;
+        this.userList = userList;
+        this.perssionType = perssionType;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("shareEntityWithUsers", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        shareEntityWithUsers_args args = new shareEntityWithUsers_args();
+        args.setEntityId(entityId);
+        args.setUserList(userList);
+        args.setPerssionType(perssionType);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public boolean getResult() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_shareEntityWithUsers();
+      }
+    }
+
+    public void revokeEntitySharingFromUsers(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      revokeEntitySharingFromUsers_call method_call = new revokeEntitySharingFromUsers_call(entityId, userList, perssionType, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class revokeEntitySharingFromUsers_call extends org.apache.thrift.async.TAsyncMethodCall {
+      private String entityId;
+      private List<String> userList;
+      private org.apache.airavata.sharing.registry.models.PermissionType perssionType;
+      public revokeEntitySharingFromUsers_call(String entityId, List<String> userList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.entityId = entityId;
+        this.userList = userList;
+        this.perssionType = perssionType;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("revokeEntitySharingFromUsers", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        revokeEntitySharingFromUsers_args args = new revokeEntitySharingFromUsers_args();
+        args.setEntityId(entityId);
+        args.setUserList(userList);
+        args.setPerssionType(perssionType);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public boolean getResult() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_revokeEntitySharingFromUsers();
+      }
+    }
+
+    public void shareEntityWithGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      shareEntityWithGroups_call method_call = new shareEntityWithGroups_call(entityId, groupList, perssionType, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class shareEntityWithGroups_call extends org.apache.thrift.async.TAsyncMethodCall {
+      private String entityId;
+      private List<String> groupList;
+      private org.apache.airavata.sharing.registry.models.PermissionType perssionType;
+      public shareEntityWithGroups_call(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.entityId = entityId;
+        this.groupList = groupList;
+        this.perssionType = perssionType;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("shareEntityWithGroups", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        shareEntityWithGroups_args args = new shareEntityWithGroups_args();
+        args.setEntityId(entityId);
+        args.setGroupList(groupList);
+        args.setPerssionType(perssionType);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public boolean getResult() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_shareEntityWithGroups();
+      }
+    }
+
+    public void revokeEntitySharingFromGroups(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      revokeEntitySharingFromGroups_call method_call = new revokeEntitySharingFromGroups_call(entityId, groupList, perssionType, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class revokeEntitySharingFromGroups_call extends org.apache.thrift.async.TAsyncMethodCall {
+      private String entityId;
+      private List<String> groupList;
+      private org.apache.airavata.sharing.registry.models.PermissionType perssionType;
+      public revokeEntitySharingFromGroups_call(String entityId, List<String> groupList, org.apache.airavata.sharing.registry.models.PermissionType perssionType, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.entityId = entityId;
+        this.groupList = groupList;
+        this.perssionType = perssionType;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("revokeEntitySharingFromGroups", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        revokeEntitySharingFromGroups_args args = new revokeEntitySharingFromGroups_args();
+        args.setEntityId(entityId);
+        args.setGroupList(groupList);
+        args.setPerssionType(perssionType);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public boolean getResult() throws org.apache.airavata.sharing.registry.models.GovRegistryException, org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_revokeEntitySharingFromGroups();
+      }
+    }
+
   }
 
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
@@ -2410,6 +2698,10 @@ public class GovRegistryService {
       processMap.put("deletePermissionType", new deletePermissionType());
       processMap.put("getPermissionType", new getPermissionType());
       processMap.put("getPermissionTypes", new getPermissionTypes());
+      processMap.put("shareEntityWithUsers", new shareEntityWithUsers());
+      processMap.put("revokeEntitySharingFromUsers", new revokeEntitySharingFromUsers());
+      processMap.put("shareEntityWithGroups", new shareEntityWithGroups());
+      processMap.put("revokeEntitySharingFromGroups", new revokeEntitySharingFromGroups());
       return processMap;
     }
 
@@ -3265,6 +3557,106 @@ public class GovRegistryService {
       }
     }
 
+    public static class shareEntityWithUsers<I extends Iface> extends org.apache.thrift.ProcessFunction<I, shareEntityWithUsers_args> {
+      public shareEntityWithUsers() {
+        super("shareEntityWithUsers");
+      }
+
+      public shareEntityWithUsers_args getEmptyArgsInstance() {
+        return new shareEntityWithUsers_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public shareEntityWithUsers_result getResult(I iface, shareEntityWithUsers_args args) throws org.apache.thrift.TException {
+        shareEntityWithUsers_result result = new shareEntityWithUsers_result();
+        try {
+          result.success = iface.shareEntityWithUsers(args.entityId, args.userList, args.perssionType);
+          result.setSuccessIsSet(true);
+        } catch (org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+          result.gre = gre;
+        }
+        return result;
+      }
+    }
+
+    public static class revokeEntitySharingFromUsers<I extends Iface> extends org.apache.thrift.ProcessFunction<I, revokeEntitySharingFromUsers_args> {
+      public revokeEntitySharingFromUsers() {
+        super("revokeEntitySharingFromUsers");
+      }
+
+      public revokeEntitySharingFromUsers_args getEmptyArgsInstance() {
+        return new revokeEntitySharingFromUsers_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public revokeEntitySharingFromUsers_result getResult(I iface, revokeEntitySharingFromUsers_args args) throws org.apache.thrift.TException {
+        revokeEntitySharingFromUsers_result result = new revokeEntitySharingFromUsers_result();
+        try {
+          result.success = iface.revokeEntitySharingFromUsers(args.entityId, args.userList, args.perssionType);
+          result.setSuccessIsSet(true);
+        } catch (org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+          result.gre = gre;
+        }
+        return result;
+      }
+    }
+
+    public static class shareEntityWithGroups<I extends Iface> extends org.apache.thrift.ProcessFunction<I, shareEntityWithGroups_args> {
+      public shareEntityWithGroups() {
+        super("shareEntityWithGroups");
+      }
+
+      public shareEntityWithGroups_args getEmptyArgsInstance() {
+        return new shareEntityWithGroups_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public shareEntityWithGroups_result getResult(I iface, shareEntityWithGroups_args args) throws org.apache.thrift.TException {
+        shareEntityWithGroups_result result = new shareEntityWithGroups_result();
+        try {
+          result.success = iface.shareEntityWithGroups(args.entityId, args.groupList, args.perssionType);
+          result.setSuccessIsSet(true);
+        } catch (org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+          result.gre = gre;
+        }
+        return result;
+      }
+    }
+
+    public static class revokeEntitySharingFromGroups<I extends Iface> extends org.apache.thrift.ProcessFunction<I, revokeEntitySharingFromGroups_args> {
+      public revokeEntitySharingFromGroups() {
+        super("revokeEntitySharingFromGroups");
+      }
+
+      public revokeEntitySharingFromGroups_args getEmptyArgsInstance() {
+        return new revokeEntitySharingFromGroups_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public revokeEntitySharingFromGroups_result getResult(I iface, revokeEntitySharingFromGroups_args args) throws org.apache.thrift.TException {
+        revokeEntitySharingFromGroups_result result = new revokeEntitySharingFromGroups_result();
+        try {
+          result.success = iface.revokeEntitySharingFromGroups(args.entityId, args.groupList, args.perssionType);
+          result.setSuccessIsSet(true);
+        } catch (org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+          result.gre = gre;
+        }
+        return result;
+      }
+    }
+
   }
 
   public static class AsyncProcessor<I extends AsyncIface> extends org.apache.thrift.TBaseAsyncProcessor<I> {
@@ -3313,6 +3705,10 @@ public class GovRegistryService {
       processMap.put("deletePermissionType", new deletePermissionType());
       processMap.put("getPermissionType", new getPermissionType());
       processMap.put("getPermissionTypes", new getPermissionTypes());
+      processMap.put("shareEntityWithUsers", new shareEntityWithUsers());
+      processMap.put("revokeEntitySharingFromUsers", new revokeEntitySharingFromUsers());
+      processMap.put("shareEntityWithGroups", new shareEntityWithGroups());
+      processMap.put("revokeEntitySharingFromGroups", new revokeEntitySharingFromGroups());
       return processMap;
     }
 
@@ -5318,6 +5714,238 @@ public class GovRegistryService {
 
       public void start(I iface, getPermissionTypes_args args, org.apache.thrift.async.AsyncMethodCallback<List<org.apache.airavata.sharing.registry.models.PermissionType>> resultHandler) throws TException {
         iface.getPermissionTypes(args.domain, args.offset, args.limit,resultHandler);
+      }
+    }
+
+    public static class shareEntityWithUsers<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, shareEntityWithUsers_args, Boolean> {
+      public shareEntityWithUsers() {
+        super("shareEntityWithUsers");
+      }
+
+      public shareEntityWithUsers_args getEmptyArgsInstance() {
+        return new shareEntityWithUsers_args();
+      }
+
+      public AsyncMethodCallback<Boolean> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new AsyncMethodCallback<Boolean>() { 
+          public void onComplete(Boolean o) {
+            shareEntityWithUsers_result result = new shareEntityWithUsers_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+              return;
+            } catch (Exception e) {
+              LOGGER.error("Exception writing to internal frame buffer", e);
+            }
+            fb.close();
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TBase msg;
+            shareEntityWithUsers_result result = new shareEntityWithUsers_result();
+            if (e instanceof org.apache.airavata.sharing.registry.models.GovRegistryException) {
+                        result.gre = (org.apache.airavata.sharing.registry.models.GovRegistryException) e;
+                        result.setGreIsSet(true);
+                        msg = result;
+            }
+             else 
+            {
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+              return;
+            } catch (Exception ex) {
+              LOGGER.error("Exception writing to internal frame buffer", ex);
+            }
+            fb.close();
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, shareEntityWithUsers_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws TException {
+        iface.shareEntityWithUsers(args.entityId, args.userList, args.perssionType,resultHandler);
+      }
+    }
+
+    public static class revokeEntitySharingFromUsers<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, revokeEntitySharingFromUsers_args, Boolean> {
+      public revokeEntitySharingFromUsers() {
+        super("revokeEntitySharingFromUsers");
+      }
+
+      public revokeEntitySharingFromUsers_args getEmptyArgsInstance() {
+        return new revokeEntitySharingFromUsers_args();
+      }
+
+      public AsyncMethodCallback<Boolean> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new AsyncMethodCallback<Boolean>() { 
+          public void onComplete(Boolean o) {
+            revokeEntitySharingFromUsers_result result = new revokeEntitySharingFromUsers_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+              return;
+            } catch (Exception e) {
+              LOGGER.error("Exception writing to internal frame buffer", e);
+            }
+            fb.close();
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TBase msg;
+            revokeEntitySharingFromUsers_result result = new revokeEntitySharingFromUsers_result();
+            if (e instanceof org.apache.airavata.sharing.registry.models.GovRegistryException) {
+                        result.gre = (org.apache.airavata.sharing.registry.models.GovRegistryException) e;
+                        result.setGreIsSet(true);
+                        msg = result;
+            }
+             else 
+            {
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+              return;
+            } catch (Exception ex) {
+              LOGGER.error("Exception writing to internal frame buffer", ex);
+            }
+            fb.close();
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, revokeEntitySharingFromUsers_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws TException {
+        iface.revokeEntitySharingFromUsers(args.entityId, args.userList, args.perssionType,resultHandler);
+      }
+    }
+
+    public static class shareEntityWithGroups<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, shareEntityWithGroups_args, Boolean> {
+      public shareEntityWithGroups() {
+        super("shareEntityWithGroups");
+      }
+
+      public shareEntityWithGroups_args getEmptyArgsInstance() {
+        return new shareEntityWithGroups_args();
+      }
+
+      public AsyncMethodCallback<Boolean> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new AsyncMethodCallback<Boolean>() { 
+          public void onComplete(Boolean o) {
+            shareEntityWithGroups_result result = new shareEntityWithGroups_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+              return;
+            } catch (Exception e) {
+              LOGGER.error("Exception writing to internal frame buffer", e);
+            }
+            fb.close();
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TBase msg;
+            shareEntityWithGroups_result result = new shareEntityWithGroups_result();
+            if (e instanceof org.apache.airavata.sharing.registry.models.GovRegistryException) {
+                        result.gre = (org.apache.airavata.sharing.registry.models.GovRegistryException) e;
+                        result.setGreIsSet(true);
+                        msg = result;
+            }
+             else 
+            {
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+              return;
+            } catch (Exception ex) {
+              LOGGER.error("Exception writing to internal frame buffer", ex);
+            }
+            fb.close();
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, shareEntityWithGroups_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws TException {
+        iface.shareEntityWithGroups(args.entityId, args.groupList, args.perssionType,resultHandler);
+      }
+    }
+
+    public static class revokeEntitySharingFromGroups<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, revokeEntitySharingFromGroups_args, Boolean> {
+      public revokeEntitySharingFromGroups() {
+        super("revokeEntitySharingFromGroups");
+      }
+
+      public revokeEntitySharingFromGroups_args getEmptyArgsInstance() {
+        return new revokeEntitySharingFromGroups_args();
+      }
+
+      public AsyncMethodCallback<Boolean> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new AsyncMethodCallback<Boolean>() { 
+          public void onComplete(Boolean o) {
+            revokeEntitySharingFromGroups_result result = new revokeEntitySharingFromGroups_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+              return;
+            } catch (Exception e) {
+              LOGGER.error("Exception writing to internal frame buffer", e);
+            }
+            fb.close();
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TBase msg;
+            revokeEntitySharingFromGroups_result result = new revokeEntitySharingFromGroups_result();
+            if (e instanceof org.apache.airavata.sharing.registry.models.GovRegistryException) {
+                        result.gre = (org.apache.airavata.sharing.registry.models.GovRegistryException) e;
+                        result.setGreIsSet(true);
+                        msg = result;
+            }
+             else 
+            {
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+              return;
+            } catch (Exception ex) {
+              LOGGER.error("Exception writing to internal frame buffer", ex);
+            }
+            fb.close();
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, revokeEntitySharingFromGroups_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws TException {
+        iface.revokeEntitySharingFromGroups(args.entityId, args.groupList, args.perssionType,resultHandler);
       }
     }
 
@@ -36478,6 +37106,4318 @@ public class GovRegistryService {
               struct.success.add(_elem82);
             }
           }
+          struct.setSuccessIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+          struct.gre.read(iprot);
+          struct.setGreIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class shareEntityWithUsers_args implements org.apache.thrift.TBase<shareEntityWithUsers_args, shareEntityWithUsers_args._Fields>, java.io.Serializable, Cloneable, Comparable<shareEntityWithUsers_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("shareEntityWithUsers_args");
+
+    private static final org.apache.thrift.protocol.TField ENTITY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("entityId", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField USER_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("userList", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField PERSSION_TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("perssionType", org.apache.thrift.protocol.TType.STRUCT, (short)3);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new shareEntityWithUsers_argsStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new shareEntityWithUsers_argsTupleSchemeFactory());
+    }
+
+    public String entityId; // required
+    public List<String> userList; // required
+    public org.apache.airavata.sharing.registry.models.PermissionType perssionType; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      ENTITY_ID((short)1, "entityId"),
+      USER_LIST((short)2, "userList"),
+      PERSSION_TYPE((short)3, "perssionType");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // ENTITY_ID
+            return ENTITY_ID;
+          case 2: // USER_LIST
+            return USER_LIST;
+          case 3: // PERSSION_TYPE
+            return PERSSION_TYPE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ENTITY_ID, new org.apache.thrift.meta_data.FieldMetaData("entityId", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.USER_LIST, new org.apache.thrift.meta_data.FieldMetaData("userList", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
+      tmpMap.put(_Fields.PERSSION_TYPE, new org.apache.thrift.meta_data.FieldMetaData("perssionType", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.apache.airavata.sharing.registry.models.PermissionType.class)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(shareEntityWithUsers_args.class, metaDataMap);
+    }
+
+    public shareEntityWithUsers_args() {
+    }
+
+    public shareEntityWithUsers_args(
+      String entityId,
+      List<String> userList,
+      org.apache.airavata.sharing.registry.models.PermissionType perssionType)
+    {
+      this();
+      this.entityId = entityId;
+      this.userList = userList;
+      this.perssionType = perssionType;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public shareEntityWithUsers_args(shareEntityWithUsers_args other) {
+      if (other.isSetEntityId()) {
+        this.entityId = other.entityId;
+      }
+      if (other.isSetUserList()) {
+        List<String> __this__userList = new ArrayList<String>(other.userList);
+        this.userList = __this__userList;
+      }
+      if (other.isSetPerssionType()) {
+        this.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType(other.perssionType);
+      }
+    }
+
+    public shareEntityWithUsers_args deepCopy() {
+      return new shareEntityWithUsers_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.entityId = null;
+      this.userList = null;
+      this.perssionType = null;
+    }
+
+    public String getEntityId() {
+      return this.entityId;
+    }
+
+    public shareEntityWithUsers_args setEntityId(String entityId) {
+      this.entityId = entityId;
+      return this;
+    }
+
+    public void unsetEntityId() {
+      this.entityId = null;
+    }
+
+    /** Returns true if field entityId is set (has been assigned a value) and false otherwise */
+    public boolean isSetEntityId() {
+      return this.entityId != null;
+    }
+
+    public void setEntityIdIsSet(boolean value) {
+      if (!value) {
+        this.entityId = null;
+      }
+    }
+
+    public int getUserListSize() {
+      return (this.userList == null) ? 0 : this.userList.size();
+    }
+
+    public java.util.Iterator<String> getUserListIterator() {
+      return (this.userList == null) ? null : this.userList.iterator();
+    }
+
+    public void addToUserList(String elem) {
+      if (this.userList == null) {
+        this.userList = new ArrayList<String>();
+      }
+      this.userList.add(elem);
+    }
+
+    public List<String> getUserList() {
+      return this.userList;
+    }
+
+    public shareEntityWithUsers_args setUserList(List<String> userList) {
+      this.userList = userList;
+      return this;
+    }
+
+    public void unsetUserList() {
+      this.userList = null;
+    }
+
+    /** Returns true if field userList is set (has been assigned a value) and false otherwise */
+    public boolean isSetUserList() {
+      return this.userList != null;
+    }
+
+    public void setUserListIsSet(boolean value) {
+      if (!value) {
+        this.userList = null;
+      }
+    }
+
+    public org.apache.airavata.sharing.registry.models.PermissionType getPerssionType() {
+      return this.perssionType;
+    }
+
+    public shareEntityWithUsers_args setPerssionType(org.apache.airavata.sharing.registry.models.PermissionType perssionType) {
+      this.perssionType = perssionType;
+      return this;
+    }
+
+    public void unsetPerssionType() {
+      this.perssionType = null;
+    }
+
+    /** Returns true if field perssionType is set (has been assigned a value) and false otherwise */
+    public boolean isSetPerssionType() {
+      return this.perssionType != null;
+    }
+
+    public void setPerssionTypeIsSet(boolean value) {
+      if (!value) {
+        this.perssionType = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case ENTITY_ID:
+        if (value == null) {
+          unsetEntityId();
+        } else {
+          setEntityId((String)value);
+        }
+        break;
+
+      case USER_LIST:
+        if (value == null) {
+          unsetUserList();
+        } else {
+          setUserList((List<String>)value);
+        }
+        break;
+
+      case PERSSION_TYPE:
+        if (value == null) {
+          unsetPerssionType();
+        } else {
+          setPerssionType((org.apache.airavata.sharing.registry.models.PermissionType)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case ENTITY_ID:
+        return getEntityId();
+
+      case USER_LIST:
+        return getUserList();
+
+      case PERSSION_TYPE:
+        return getPerssionType();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case ENTITY_ID:
+        return isSetEntityId();
+      case USER_LIST:
+        return isSetUserList();
+      case PERSSION_TYPE:
+        return isSetPerssionType();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof shareEntityWithUsers_args)
+        return this.equals((shareEntityWithUsers_args)that);
+      return false;
+    }
+
+    public boolean equals(shareEntityWithUsers_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_entityId = true && this.isSetEntityId();
+      boolean that_present_entityId = true && that.isSetEntityId();
+      if (this_present_entityId || that_present_entityId) {
+        if (!(this_present_entityId && that_present_entityId))
+          return false;
+        if (!this.entityId.equals(that.entityId))
+          return false;
+      }
+
+      boolean this_present_userList = true && this.isSetUserList();
+      boolean that_present_userList = true && that.isSetUserList();
+      if (this_present_userList || that_present_userList) {
+        if (!(this_present_userList && that_present_userList))
+          return false;
+        if (!this.userList.equals(that.userList))
+          return false;
+      }
+
+      boolean this_present_perssionType = true && this.isSetPerssionType();
+      boolean that_present_perssionType = true && that.isSetPerssionType();
+      if (this_present_perssionType || that_present_perssionType) {
+        if (!(this_present_perssionType && that_present_perssionType))
+          return false;
+        if (!this.perssionType.equals(that.perssionType))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_entityId = true && (isSetEntityId());
+      list.add(present_entityId);
+      if (present_entityId)
+        list.add(entityId);
+
+      boolean present_userList = true && (isSetUserList());
+      list.add(present_userList);
+      if (present_userList)
+        list.add(userList);
+
+      boolean present_perssionType = true && (isSetPerssionType());
+      list.add(present_perssionType);
+      if (present_perssionType)
+        list.add(perssionType);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(shareEntityWithUsers_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetEntityId()).compareTo(other.isSetEntityId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetEntityId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.entityId, other.entityId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetUserList()).compareTo(other.isSetUserList());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetUserList()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.userList, other.userList);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetPerssionType()).compareTo(other.isSetPerssionType());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPerssionType()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.perssionType, other.perssionType);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("shareEntityWithUsers_args(");
+      boolean first = true;
+
+      sb.append("entityId:");
+      if (this.entityId == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.entityId);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("userList:");
+      if (this.userList == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.userList);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("perssionType:");
+      if (this.perssionType == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.perssionType);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      if (entityId == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'entityId' was not present! Struct: " + toString());
+      }
+      if (userList == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'userList' was not present! Struct: " + toString());
+      }
+      if (perssionType == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'perssionType' was not present! Struct: " + toString());
+      }
+      // check for sub-struct validity
+      if (perssionType != null) {
+        perssionType.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class shareEntityWithUsers_argsStandardSchemeFactory implements SchemeFactory {
+      public shareEntityWithUsers_argsStandardScheme getScheme() {
+        return new shareEntityWithUsers_argsStandardScheme();
+      }
+    }
+
+    private static class shareEntityWithUsers_argsStandardScheme extends StandardScheme<shareEntityWithUsers_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, shareEntityWithUsers_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // ENTITY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.entityId = iprot.readString();
+                struct.setEntityIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // USER_LIST
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list84 = iprot.readListBegin();
+                  struct.userList = new ArrayList<String>(_list84.size);
+                  String _elem85;
+                  for (int _i86 = 0; _i86 < _list84.size; ++_i86)
+                  {
+                    _elem85 = iprot.readString();
+                    struct.userList.add(_elem85);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setUserListIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // PERSSION_TYPE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+                struct.perssionType.read(iprot);
+                struct.setPerssionTypeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, shareEntityWithUsers_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.entityId != null) {
+          oprot.writeFieldBegin(ENTITY_ID_FIELD_DESC);
+          oprot.writeString(struct.entityId);
+          oprot.writeFieldEnd();
+        }
+        if (struct.userList != null) {
+          oprot.writeFieldBegin(USER_LIST_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.userList.size()));
+            for (String _iter87 : struct.userList)
+            {
+              oprot.writeString(_iter87);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        if (struct.perssionType != null) {
+          oprot.writeFieldBegin(PERSSION_TYPE_FIELD_DESC);
+          struct.perssionType.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class shareEntityWithUsers_argsTupleSchemeFactory implements SchemeFactory {
+      public shareEntityWithUsers_argsTupleScheme getScheme() {
+        return new shareEntityWithUsers_argsTupleScheme();
+      }
+    }
+
+    private static class shareEntityWithUsers_argsTupleScheme extends TupleScheme<shareEntityWithUsers_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, shareEntityWithUsers_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        oprot.writeString(struct.entityId);
+        {
+          oprot.writeI32(struct.userList.size());
+          for (String _iter88 : struct.userList)
+          {
+            oprot.writeString(_iter88);
+          }
+        }
+        struct.perssionType.write(oprot);
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, shareEntityWithUsers_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        struct.entityId = iprot.readString();
+        struct.setEntityIdIsSet(true);
+        {
+          org.apache.thrift.protocol.TList _list89 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.userList = new ArrayList<String>(_list89.size);
+          String _elem90;
+          for (int _i91 = 0; _i91 < _list89.size; ++_i91)
+          {
+            _elem90 = iprot.readString();
+            struct.userList.add(_elem90);
+          }
+        }
+        struct.setUserListIsSet(true);
+        struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+        struct.perssionType.read(iprot);
+        struct.setPerssionTypeIsSet(true);
+      }
+    }
+
+  }
+
+  public static class shareEntityWithUsers_result implements org.apache.thrift.TBase<shareEntityWithUsers_result, shareEntityWithUsers_result._Fields>, java.io.Serializable, Cloneable, Comparable<shareEntityWithUsers_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("shareEntityWithUsers_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
+    private static final org.apache.thrift.protocol.TField GRE_FIELD_DESC = new org.apache.thrift.protocol.TField("gre", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new shareEntityWithUsers_resultStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new shareEntityWithUsers_resultTupleSchemeFactory());
+    }
+
+    public boolean success; // required
+    public org.apache.airavata.sharing.registry.models.GovRegistryException gre; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      GRE((short)1, "gre");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // GRE
+            return GRE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
+      tmpMap.put(_Fields.GRE, new org.apache.thrift.meta_data.FieldMetaData("gre", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(shareEntityWithUsers_result.class, metaDataMap);
+    }
+
+    public shareEntityWithUsers_result() {
+    }
+
+    public shareEntityWithUsers_result(
+      boolean success,
+      org.apache.airavata.sharing.registry.models.GovRegistryException gre)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+      this.gre = gre;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public shareEntityWithUsers_result(shareEntityWithUsers_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+      if (other.isSetGre()) {
+        this.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException(other.gre);
+      }
+    }
+
+    public shareEntityWithUsers_result deepCopy() {
+      return new shareEntityWithUsers_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = false;
+      this.gre = null;
+    }
+
+    public boolean isSuccess() {
+      return this.success;
+    }
+
+    public shareEntityWithUsers_result setSuccess(boolean success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public org.apache.airavata.sharing.registry.models.GovRegistryException getGre() {
+      return this.gre;
+    }
+
+    public shareEntityWithUsers_result setGre(org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+      this.gre = gre;
+      return this;
+    }
+
+    public void unsetGre() {
+      this.gre = null;
+    }
+
+    /** Returns true if field gre is set (has been assigned a value) and false otherwise */
+    public boolean isSetGre() {
+      return this.gre != null;
+    }
+
+    public void setGreIsSet(boolean value) {
+      if (!value) {
+        this.gre = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((Boolean)value);
+        }
+        break;
+
+      case GRE:
+        if (value == null) {
+          unsetGre();
+        } else {
+          setGre((org.apache.airavata.sharing.registry.models.GovRegistryException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return isSuccess();
+
+      case GRE:
+        return getGre();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      case GRE:
+        return isSetGre();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof shareEntityWithUsers_result)
+        return this.equals((shareEntityWithUsers_result)that);
+      return false;
+    }
+
+    public boolean equals(shareEntityWithUsers_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      boolean this_present_gre = true && this.isSetGre();
+      boolean that_present_gre = true && that.isSetGre();
+      if (this_present_gre || that_present_gre) {
+        if (!(this_present_gre && that_present_gre))
+          return false;
+        if (!this.gre.equals(that.gre))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_success = true;
+      list.add(present_success);
+      if (present_success)
+        list.add(success);
+
+      boolean present_gre = true && (isSetGre());
+      list.add(present_gre);
+      if (present_gre)
+        list.add(gre);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(shareEntityWithUsers_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetGre()).compareTo(other.isSetGre());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetGre()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.gre, other.gre);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("shareEntityWithUsers_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("gre:");
+      if (this.gre == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.gre);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class shareEntityWithUsers_resultStandardSchemeFactory implements SchemeFactory {
+      public shareEntityWithUsers_resultStandardScheme getScheme() {
+        return new shareEntityWithUsers_resultStandardScheme();
+      }
+    }
+
+    private static class shareEntityWithUsers_resultStandardScheme extends StandardScheme<shareEntityWithUsers_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, shareEntityWithUsers_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
+                struct.success = iprot.readBool();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 1: // GRE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+                struct.gre.read(iprot);
+                struct.setGreIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, shareEntityWithUsers_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeBool(struct.success);
+          oprot.writeFieldEnd();
+        }
+        if (struct.gre != null) {
+          oprot.writeFieldBegin(GRE_FIELD_DESC);
+          struct.gre.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class shareEntityWithUsers_resultTupleSchemeFactory implements SchemeFactory {
+      public shareEntityWithUsers_resultTupleScheme getScheme() {
+        return new shareEntityWithUsers_resultTupleScheme();
+      }
+    }
+
+    private static class shareEntityWithUsers_resultTupleScheme extends TupleScheme<shareEntityWithUsers_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, shareEntityWithUsers_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        if (struct.isSetGre()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetSuccess()) {
+          oprot.writeBool(struct.success);
+        }
+        if (struct.isSetGre()) {
+          struct.gre.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, shareEntityWithUsers_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.success = iprot.readBool();
+          struct.setSuccessIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+          struct.gre.read(iprot);
+          struct.setGreIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class revokeEntitySharingFromUsers_args implements org.apache.thrift.TBase<revokeEntitySharingFromUsers_args, revokeEntitySharingFromUsers_args._Fields>, java.io.Serializable, Cloneable, Comparable<revokeEntitySharingFromUsers_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("revokeEntitySharingFromUsers_args");
+
+    private static final org.apache.thrift.protocol.TField ENTITY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("entityId", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField USER_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("userList", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField PERSSION_TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("perssionType", org.apache.thrift.protocol.TType.STRUCT, (short)3);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new revokeEntitySharingFromUsers_argsStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new revokeEntitySharingFromUsers_argsTupleSchemeFactory());
+    }
+
+    public String entityId; // required
+    public List<String> userList; // required
+    public org.apache.airavata.sharing.registry.models.PermissionType perssionType; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      ENTITY_ID((short)1, "entityId"),
+      USER_LIST((short)2, "userList"),
+      PERSSION_TYPE((short)3, "perssionType");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // ENTITY_ID
+            return ENTITY_ID;
+          case 2: // USER_LIST
+            return USER_LIST;
+          case 3: // PERSSION_TYPE
+            return PERSSION_TYPE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ENTITY_ID, new org.apache.thrift.meta_data.FieldMetaData("entityId", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.USER_LIST, new org.apache.thrift.meta_data.FieldMetaData("userList", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
+      tmpMap.put(_Fields.PERSSION_TYPE, new org.apache.thrift.meta_data.FieldMetaData("perssionType", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.apache.airavata.sharing.registry.models.PermissionType.class)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(revokeEntitySharingFromUsers_args.class, metaDataMap);
+    }
+
+    public revokeEntitySharingFromUsers_args() {
+    }
+
+    public revokeEntitySharingFromUsers_args(
+      String entityId,
+      List<String> userList,
+      org.apache.airavata.sharing.registry.models.PermissionType perssionType)
+    {
+      this();
+      this.entityId = entityId;
+      this.userList = userList;
+      this.perssionType = perssionType;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public revokeEntitySharingFromUsers_args(revokeEntitySharingFromUsers_args other) {
+      if (other.isSetEntityId()) {
+        this.entityId = other.entityId;
+      }
+      if (other.isSetUserList()) {
+        List<String> __this__userList = new ArrayList<String>(other.userList);
+        this.userList = __this__userList;
+      }
+      if (other.isSetPerssionType()) {
+        this.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType(other.perssionType);
+      }
+    }
+
+    public revokeEntitySharingFromUsers_args deepCopy() {
+      return new revokeEntitySharingFromUsers_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.entityId = null;
+      this.userList = null;
+      this.perssionType = null;
+    }
+
+    public String getEntityId() {
+      return this.entityId;
+    }
+
+    public revokeEntitySharingFromUsers_args setEntityId(String entityId) {
+      this.entityId = entityId;
+      return this;
+    }
+
+    public void unsetEntityId() {
+      this.entityId = null;
+    }
+
+    /** Returns true if field entityId is set (has been assigned a value) and false otherwise */
+    public boolean isSetEntityId() {
+      return this.entityId != null;
+    }
+
+    public void setEntityIdIsSet(boolean value) {
+      if (!value) {
+        this.entityId = null;
+      }
+    }
+
+    public int getUserListSize() {
+      return (this.userList == null) ? 0 : this.userList.size();
+    }
+
+    public java.util.Iterator<String> getUserListIterator() {
+      return (this.userList == null) ? null : this.userList.iterator();
+    }
+
+    public void addToUserList(String elem) {
+      if (this.userList == null) {
+        this.userList = new ArrayList<String>();
+      }
+      this.userList.add(elem);
+    }
+
+    public List<String> getUserList() {
+      return this.userList;
+    }
+
+    public revokeEntitySharingFromUsers_args setUserList(List<String> userList) {
+      this.userList = userList;
+      return this;
+    }
+
+    public void unsetUserList() {
+      this.userList = null;
+    }
+
+    /** Returns true if field userList is set (has been assigned a value) and false otherwise */
+    public boolean isSetUserList() {
+      return this.userList != null;
+    }
+
+    public void setUserListIsSet(boolean value) {
+      if (!value) {
+        this.userList = null;
+      }
+    }
+
+    public org.apache.airavata.sharing.registry.models.PermissionType getPerssionType() {
+      return this.perssionType;
+    }
+
+    public revokeEntitySharingFromUsers_args setPerssionType(org.apache.airavata.sharing.registry.models.PermissionType perssionType) {
+      this.perssionType = perssionType;
+      return this;
+    }
+
+    public void unsetPerssionType() {
+      this.perssionType = null;
+    }
+
+    /** Returns true if field perssionType is set (has been assigned a value) and false otherwise */
+    public boolean isSetPerssionType() {
+      return this.perssionType != null;
+    }
+
+    public void setPerssionTypeIsSet(boolean value) {
+      if (!value) {
+        this.perssionType = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case ENTITY_ID:
+        if (value == null) {
+          unsetEntityId();
+        } else {
+          setEntityId((String)value);
+        }
+        break;
+
+      case USER_LIST:
+        if (value == null) {
+          unsetUserList();
+        } else {
+          setUserList((List<String>)value);
+        }
+        break;
+
+      case PERSSION_TYPE:
+        if (value == null) {
+          unsetPerssionType();
+        } else {
+          setPerssionType((org.apache.airavata.sharing.registry.models.PermissionType)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case ENTITY_ID:
+        return getEntityId();
+
+      case USER_LIST:
+        return getUserList();
+
+      case PERSSION_TYPE:
+        return getPerssionType();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case ENTITY_ID:
+        return isSetEntityId();
+      case USER_LIST:
+        return isSetUserList();
+      case PERSSION_TYPE:
+        return isSetPerssionType();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof revokeEntitySharingFromUsers_args)
+        return this.equals((revokeEntitySharingFromUsers_args)that);
+      return false;
+    }
+
+    public boolean equals(revokeEntitySharingFromUsers_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_entityId = true && this.isSetEntityId();
+      boolean that_present_entityId = true && that.isSetEntityId();
+      if (this_present_entityId || that_present_entityId) {
+        if (!(this_present_entityId && that_present_entityId))
+          return false;
+        if (!this.entityId.equals(that.entityId))
+          return false;
+      }
+
+      boolean this_present_userList = true && this.isSetUserList();
+      boolean that_present_userList = true && that.isSetUserList();
+      if (this_present_userList || that_present_userList) {
+        if (!(this_present_userList && that_present_userList))
+          return false;
+        if (!this.userList.equals(that.userList))
+          return false;
+      }
+
+      boolean this_present_perssionType = true && this.isSetPerssionType();
+      boolean that_present_perssionType = true && that.isSetPerssionType();
+      if (this_present_perssionType || that_present_perssionType) {
+        if (!(this_present_perssionType && that_present_perssionType))
+          return false;
+        if (!this.perssionType.equals(that.perssionType))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_entityId = true && (isSetEntityId());
+      list.add(present_entityId);
+      if (present_entityId)
+        list.add(entityId);
+
+      boolean present_userList = true && (isSetUserList());
+      list.add(present_userList);
+      if (present_userList)
+        list.add(userList);
+
+      boolean present_perssionType = true && (isSetPerssionType());
+      list.add(present_perssionType);
+      if (present_perssionType)
+        list.add(perssionType);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(revokeEntitySharingFromUsers_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetEntityId()).compareTo(other.isSetEntityId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetEntityId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.entityId, other.entityId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetUserList()).compareTo(other.isSetUserList());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetUserList()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.userList, other.userList);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetPerssionType()).compareTo(other.isSetPerssionType());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPerssionType()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.perssionType, other.perssionType);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("revokeEntitySharingFromUsers_args(");
+      boolean first = true;
+
+      sb.append("entityId:");
+      if (this.entityId == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.entityId);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("userList:");
+      if (this.userList == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.userList);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("perssionType:");
+      if (this.perssionType == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.perssionType);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      if (entityId == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'entityId' was not present! Struct: " + toString());
+      }
+      if (userList == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'userList' was not present! Struct: " + toString());
+      }
+      if (perssionType == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'perssionType' was not present! Struct: " + toString());
+      }
+      // check for sub-struct validity
+      if (perssionType != null) {
+        perssionType.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class revokeEntitySharingFromUsers_argsStandardSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromUsers_argsStandardScheme getScheme() {
+        return new revokeEntitySharingFromUsers_argsStandardScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromUsers_argsStandardScheme extends StandardScheme<revokeEntitySharingFromUsers_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, revokeEntitySharingFromUsers_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // ENTITY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.entityId = iprot.readString();
+                struct.setEntityIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // USER_LIST
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list92 = iprot.readListBegin();
+                  struct.userList = new ArrayList<String>(_list92.size);
+                  String _elem93;
+                  for (int _i94 = 0; _i94 < _list92.size; ++_i94)
+                  {
+                    _elem93 = iprot.readString();
+                    struct.userList.add(_elem93);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setUserListIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // PERSSION_TYPE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+                struct.perssionType.read(iprot);
+                struct.setPerssionTypeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, revokeEntitySharingFromUsers_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.entityId != null) {
+          oprot.writeFieldBegin(ENTITY_ID_FIELD_DESC);
+          oprot.writeString(struct.entityId);
+          oprot.writeFieldEnd();
+        }
+        if (struct.userList != null) {
+          oprot.writeFieldBegin(USER_LIST_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.userList.size()));
+            for (String _iter95 : struct.userList)
+            {
+              oprot.writeString(_iter95);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        if (struct.perssionType != null) {
+          oprot.writeFieldBegin(PERSSION_TYPE_FIELD_DESC);
+          struct.perssionType.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class revokeEntitySharingFromUsers_argsTupleSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromUsers_argsTupleScheme getScheme() {
+        return new revokeEntitySharingFromUsers_argsTupleScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromUsers_argsTupleScheme extends TupleScheme<revokeEntitySharingFromUsers_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromUsers_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        oprot.writeString(struct.entityId);
+        {
+          oprot.writeI32(struct.userList.size());
+          for (String _iter96 : struct.userList)
+          {
+            oprot.writeString(_iter96);
+          }
+        }
+        struct.perssionType.write(oprot);
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromUsers_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        struct.entityId = iprot.readString();
+        struct.setEntityIdIsSet(true);
+        {
+          org.apache.thrift.protocol.TList _list97 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.userList = new ArrayList<String>(_list97.size);
+          String _elem98;
+          for (int _i99 = 0; _i99 < _list97.size; ++_i99)
+          {
+            _elem98 = iprot.readString();
+            struct.userList.add(_elem98);
+          }
+        }
+        struct.setUserListIsSet(true);
+        struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+        struct.perssionType.read(iprot);
+        struct.setPerssionTypeIsSet(true);
+      }
+    }
+
+  }
+
+  public static class revokeEntitySharingFromUsers_result implements org.apache.thrift.TBase<revokeEntitySharingFromUsers_result, revokeEntitySharingFromUsers_result._Fields>, java.io.Serializable, Cloneable, Comparable<revokeEntitySharingFromUsers_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("revokeEntitySharingFromUsers_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
+    private static final org.apache.thrift.protocol.TField GRE_FIELD_DESC = new org.apache.thrift.protocol.TField("gre", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new revokeEntitySharingFromUsers_resultStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new revokeEntitySharingFromUsers_resultTupleSchemeFactory());
+    }
+
+    public boolean success; // required
+    public org.apache.airavata.sharing.registry.models.GovRegistryException gre; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      GRE((short)1, "gre");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // GRE
+            return GRE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
+      tmpMap.put(_Fields.GRE, new org.apache.thrift.meta_data.FieldMetaData("gre", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(revokeEntitySharingFromUsers_result.class, metaDataMap);
+    }
+
+    public revokeEntitySharingFromUsers_result() {
+    }
+
+    public revokeEntitySharingFromUsers_result(
+      boolean success,
+      org.apache.airavata.sharing.registry.models.GovRegistryException gre)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+      this.gre = gre;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public revokeEntitySharingFromUsers_result(revokeEntitySharingFromUsers_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+      if (other.isSetGre()) {
+        this.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException(other.gre);
+      }
+    }
+
+    public revokeEntitySharingFromUsers_result deepCopy() {
+      return new revokeEntitySharingFromUsers_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = false;
+      this.gre = null;
+    }
+
+    public boolean isSuccess() {
+      return this.success;
+    }
+
+    public revokeEntitySharingFromUsers_result setSuccess(boolean success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public org.apache.airavata.sharing.registry.models.GovRegistryException getGre() {
+      return this.gre;
+    }
+
+    public revokeEntitySharingFromUsers_result setGre(org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+      this.gre = gre;
+      return this;
+    }
+
+    public void unsetGre() {
+      this.gre = null;
+    }
+
+    /** Returns true if field gre is set (has been assigned a value) and false otherwise */
+    public boolean isSetGre() {
+      return this.gre != null;
+    }
+
+    public void setGreIsSet(boolean value) {
+      if (!value) {
+        this.gre = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((Boolean)value);
+        }
+        break;
+
+      case GRE:
+        if (value == null) {
+          unsetGre();
+        } else {
+          setGre((org.apache.airavata.sharing.registry.models.GovRegistryException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return isSuccess();
+
+      case GRE:
+        return getGre();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      case GRE:
+        return isSetGre();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof revokeEntitySharingFromUsers_result)
+        return this.equals((revokeEntitySharingFromUsers_result)that);
+      return false;
+    }
+
+    public boolean equals(revokeEntitySharingFromUsers_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      boolean this_present_gre = true && this.isSetGre();
+      boolean that_present_gre = true && that.isSetGre();
+      if (this_present_gre || that_present_gre) {
+        if (!(this_present_gre && that_present_gre))
+          return false;
+        if (!this.gre.equals(that.gre))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_success = true;
+      list.add(present_success);
+      if (present_success)
+        list.add(success);
+
+      boolean present_gre = true && (isSetGre());
+      list.add(present_gre);
+      if (present_gre)
+        list.add(gre);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(revokeEntitySharingFromUsers_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetGre()).compareTo(other.isSetGre());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetGre()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.gre, other.gre);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("revokeEntitySharingFromUsers_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("gre:");
+      if (this.gre == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.gre);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class revokeEntitySharingFromUsers_resultStandardSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromUsers_resultStandardScheme getScheme() {
+        return new revokeEntitySharingFromUsers_resultStandardScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromUsers_resultStandardScheme extends StandardScheme<revokeEntitySharingFromUsers_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, revokeEntitySharingFromUsers_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
+                struct.success = iprot.readBool();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 1: // GRE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+                struct.gre.read(iprot);
+                struct.setGreIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, revokeEntitySharingFromUsers_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeBool(struct.success);
+          oprot.writeFieldEnd();
+        }
+        if (struct.gre != null) {
+          oprot.writeFieldBegin(GRE_FIELD_DESC);
+          struct.gre.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class revokeEntitySharingFromUsers_resultTupleSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromUsers_resultTupleScheme getScheme() {
+        return new revokeEntitySharingFromUsers_resultTupleScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromUsers_resultTupleScheme extends TupleScheme<revokeEntitySharingFromUsers_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromUsers_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        if (struct.isSetGre()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetSuccess()) {
+          oprot.writeBool(struct.success);
+        }
+        if (struct.isSetGre()) {
+          struct.gre.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromUsers_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.success = iprot.readBool();
+          struct.setSuccessIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+          struct.gre.read(iprot);
+          struct.setGreIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class shareEntityWithGroups_args implements org.apache.thrift.TBase<shareEntityWithGroups_args, shareEntityWithGroups_args._Fields>, java.io.Serializable, Cloneable, Comparable<shareEntityWithGroups_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("shareEntityWithGroups_args");
+
+    private static final org.apache.thrift.protocol.TField ENTITY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("entityId", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField GROUP_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("groupList", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField PERSSION_TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("perssionType", org.apache.thrift.protocol.TType.STRUCT, (short)3);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new shareEntityWithGroups_argsStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new shareEntityWithGroups_argsTupleSchemeFactory());
+    }
+
+    public String entityId; // required
+    public List<String> groupList; // required
+    public org.apache.airavata.sharing.registry.models.PermissionType perssionType; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      ENTITY_ID((short)1, "entityId"),
+      GROUP_LIST((short)2, "groupList"),
+      PERSSION_TYPE((short)3, "perssionType");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // ENTITY_ID
+            return ENTITY_ID;
+          case 2: // GROUP_LIST
+            return GROUP_LIST;
+          case 3: // PERSSION_TYPE
+            return PERSSION_TYPE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ENTITY_ID, new org.apache.thrift.meta_data.FieldMetaData("entityId", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.GROUP_LIST, new org.apache.thrift.meta_data.FieldMetaData("groupList", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
+      tmpMap.put(_Fields.PERSSION_TYPE, new org.apache.thrift.meta_data.FieldMetaData("perssionType", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.apache.airavata.sharing.registry.models.PermissionType.class)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(shareEntityWithGroups_args.class, metaDataMap);
+    }
+
+    public shareEntityWithGroups_args() {
+    }
+
+    public shareEntityWithGroups_args(
+      String entityId,
+      List<String> groupList,
+      org.apache.airavata.sharing.registry.models.PermissionType perssionType)
+    {
+      this();
+      this.entityId = entityId;
+      this.groupList = groupList;
+      this.perssionType = perssionType;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public shareEntityWithGroups_args(shareEntityWithGroups_args other) {
+      if (other.isSetEntityId()) {
+        this.entityId = other.entityId;
+      }
+      if (other.isSetGroupList()) {
+        List<String> __this__groupList = new ArrayList<String>(other.groupList);
+        this.groupList = __this__groupList;
+      }
+      if (other.isSetPerssionType()) {
+        this.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType(other.perssionType);
+      }
+    }
+
+    public shareEntityWithGroups_args deepCopy() {
+      return new shareEntityWithGroups_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.entityId = null;
+      this.groupList = null;
+      this.perssionType = null;
+    }
+
+    public String getEntityId() {
+      return this.entityId;
+    }
+
+    public shareEntityWithGroups_args setEntityId(String entityId) {
+      this.entityId = entityId;
+      return this;
+    }
+
+    public void unsetEntityId() {
+      this.entityId = null;
+    }
+
+    /** Returns true if field entityId is set (has been assigned a value) and false otherwise */
+    public boolean isSetEntityId() {
+      return this.entityId != null;
+    }
+
+    public void setEntityIdIsSet(boolean value) {
+      if (!value) {
+        this.entityId = null;
+      }
+    }
+
+    public int getGroupListSize() {
+      return (this.groupList == null) ? 0 : this.groupList.size();
+    }
+
+    public java.util.Iterator<String> getGroupListIterator() {
+      return (this.groupList == null) ? null : this.groupList.iterator();
+    }
+
+    public void addToGroupList(String elem) {
+      if (this.groupList == null) {
+        this.groupList = new ArrayList<String>();
+      }
+      this.groupList.add(elem);
+    }
+
+    public List<String> getGroupList() {
+      return this.groupList;
+    }
+
+    public shareEntityWithGroups_args setGroupList(List<String> groupList) {
+      this.groupList = groupList;
+      return this;
+    }
+
+    public void unsetGroupList() {
+      this.groupList = null;
+    }
+
+    /** Returns true if field groupList is set (has been assigned a value) and false otherwise */
+    public boolean isSetGroupList() {
+      return this.groupList != null;
+    }
+
+    public void setGroupListIsSet(boolean value) {
+      if (!value) {
+        this.groupList = null;
+      }
+    }
+
+    public org.apache.airavata.sharing.registry.models.PermissionType getPerssionType() {
+      return this.perssionType;
+    }
+
+    public shareEntityWithGroups_args setPerssionType(org.apache.airavata.sharing.registry.models.PermissionType perssionType) {
+      this.perssionType = perssionType;
+      return this;
+    }
+
+    public void unsetPerssionType() {
+      this.perssionType = null;
+    }
+
+    /** Returns true if field perssionType is set (has been assigned a value) and false otherwise */
+    public boolean isSetPerssionType() {
+      return this.perssionType != null;
+    }
+
+    public void setPerssionTypeIsSet(boolean value) {
+      if (!value) {
+        this.perssionType = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case ENTITY_ID:
+        if (value == null) {
+          unsetEntityId();
+        } else {
+          setEntityId((String)value);
+        }
+        break;
+
+      case GROUP_LIST:
+        if (value == null) {
+          unsetGroupList();
+        } else {
+          setGroupList((List<String>)value);
+        }
+        break;
+
+      case PERSSION_TYPE:
+        if (value == null) {
+          unsetPerssionType();
+        } else {
+          setPerssionType((org.apache.airavata.sharing.registry.models.PermissionType)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case ENTITY_ID:
+        return getEntityId();
+
+      case GROUP_LIST:
+        return getGroupList();
+
+      case PERSSION_TYPE:
+        return getPerssionType();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case ENTITY_ID:
+        return isSetEntityId();
+      case GROUP_LIST:
+        return isSetGroupList();
+      case PERSSION_TYPE:
+        return isSetPerssionType();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof shareEntityWithGroups_args)
+        return this.equals((shareEntityWithGroups_args)that);
+      return false;
+    }
+
+    public boolean equals(shareEntityWithGroups_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_entityId = true && this.isSetEntityId();
+      boolean that_present_entityId = true && that.isSetEntityId();
+      if (this_present_entityId || that_present_entityId) {
+        if (!(this_present_entityId && that_present_entityId))
+          return false;
+        if (!this.entityId.equals(that.entityId))
+          return false;
+      }
+
+      boolean this_present_groupList = true && this.isSetGroupList();
+      boolean that_present_groupList = true && that.isSetGroupList();
+      if (this_present_groupList || that_present_groupList) {
+        if (!(this_present_groupList && that_present_groupList))
+          return false;
+        if (!this.groupList.equals(that.groupList))
+          return false;
+      }
+
+      boolean this_present_perssionType = true && this.isSetPerssionType();
+      boolean that_present_perssionType = true && that.isSetPerssionType();
+      if (this_present_perssionType || that_present_perssionType) {
+        if (!(this_present_perssionType && that_present_perssionType))
+          return false;
+        if (!this.perssionType.equals(that.perssionType))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_entityId = true && (isSetEntityId());
+      list.add(present_entityId);
+      if (present_entityId)
+        list.add(entityId);
+
+      boolean present_groupList = true && (isSetGroupList());
+      list.add(present_groupList);
+      if (present_groupList)
+        list.add(groupList);
+
+      boolean present_perssionType = true && (isSetPerssionType());
+      list.add(present_perssionType);
+      if (present_perssionType)
+        list.add(perssionType);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(shareEntityWithGroups_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetEntityId()).compareTo(other.isSetEntityId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetEntityId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.entityId, other.entityId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetGroupList()).compareTo(other.isSetGroupList());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetGroupList()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.groupList, other.groupList);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetPerssionType()).compareTo(other.isSetPerssionType());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPerssionType()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.perssionType, other.perssionType);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("shareEntityWithGroups_args(");
+      boolean first = true;
+
+      sb.append("entityId:");
+      if (this.entityId == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.entityId);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("groupList:");
+      if (this.groupList == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.groupList);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("perssionType:");
+      if (this.perssionType == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.perssionType);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      if (entityId == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'entityId' was not present! Struct: " + toString());
+      }
+      if (groupList == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'groupList' was not present! Struct: " + toString());
+      }
+      if (perssionType == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'perssionType' was not present! Struct: " + toString());
+      }
+      // check for sub-struct validity
+      if (perssionType != null) {
+        perssionType.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class shareEntityWithGroups_argsStandardSchemeFactory implements SchemeFactory {
+      public shareEntityWithGroups_argsStandardScheme getScheme() {
+        return new shareEntityWithGroups_argsStandardScheme();
+      }
+    }
+
+    private static class shareEntityWithGroups_argsStandardScheme extends StandardScheme<shareEntityWithGroups_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, shareEntityWithGroups_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // ENTITY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.entityId = iprot.readString();
+                struct.setEntityIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // GROUP_LIST
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list100 = iprot.readListBegin();
+                  struct.groupList = new ArrayList<String>(_list100.size);
+                  String _elem101;
+                  for (int _i102 = 0; _i102 < _list100.size; ++_i102)
+                  {
+                    _elem101 = iprot.readString();
+                    struct.groupList.add(_elem101);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setGroupListIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // PERSSION_TYPE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+                struct.perssionType.read(iprot);
+                struct.setPerssionTypeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, shareEntityWithGroups_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.entityId != null) {
+          oprot.writeFieldBegin(ENTITY_ID_FIELD_DESC);
+          oprot.writeString(struct.entityId);
+          oprot.writeFieldEnd();
+        }
+        if (struct.groupList != null) {
+          oprot.writeFieldBegin(GROUP_LIST_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.groupList.size()));
+            for (String _iter103 : struct.groupList)
+            {
+              oprot.writeString(_iter103);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        if (struct.perssionType != null) {
+          oprot.writeFieldBegin(PERSSION_TYPE_FIELD_DESC);
+          struct.perssionType.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class shareEntityWithGroups_argsTupleSchemeFactory implements SchemeFactory {
+      public shareEntityWithGroups_argsTupleScheme getScheme() {
+        return new shareEntityWithGroups_argsTupleScheme();
+      }
+    }
+
+    private static class shareEntityWithGroups_argsTupleScheme extends TupleScheme<shareEntityWithGroups_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, shareEntityWithGroups_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        oprot.writeString(struct.entityId);
+        {
+          oprot.writeI32(struct.groupList.size());
+          for (String _iter104 : struct.groupList)
+          {
+            oprot.writeString(_iter104);
+          }
+        }
+        struct.perssionType.write(oprot);
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, shareEntityWithGroups_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        struct.entityId = iprot.readString();
+        struct.setEntityIdIsSet(true);
+        {
+          org.apache.thrift.protocol.TList _list105 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.groupList = new ArrayList<String>(_list105.size);
+          String _elem106;
+          for (int _i107 = 0; _i107 < _list105.size; ++_i107)
+          {
+            _elem106 = iprot.readString();
+            struct.groupList.add(_elem106);
+          }
+        }
+        struct.setGroupListIsSet(true);
+        struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+        struct.perssionType.read(iprot);
+        struct.setPerssionTypeIsSet(true);
+      }
+    }
+
+  }
+
+  public static class shareEntityWithGroups_result implements org.apache.thrift.TBase<shareEntityWithGroups_result, shareEntityWithGroups_result._Fields>, java.io.Serializable, Cloneable, Comparable<shareEntityWithGroups_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("shareEntityWithGroups_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
+    private static final org.apache.thrift.protocol.TField GRE_FIELD_DESC = new org.apache.thrift.protocol.TField("gre", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new shareEntityWithGroups_resultStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new shareEntityWithGroups_resultTupleSchemeFactory());
+    }
+
+    public boolean success; // required
+    public org.apache.airavata.sharing.registry.models.GovRegistryException gre; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      GRE((short)1, "gre");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // GRE
+            return GRE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
+      tmpMap.put(_Fields.GRE, new org.apache.thrift.meta_data.FieldMetaData("gre", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(shareEntityWithGroups_result.class, metaDataMap);
+    }
+
+    public shareEntityWithGroups_result() {
+    }
+
+    public shareEntityWithGroups_result(
+      boolean success,
+      org.apache.airavata.sharing.registry.models.GovRegistryException gre)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+      this.gre = gre;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public shareEntityWithGroups_result(shareEntityWithGroups_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+      if (other.isSetGre()) {
+        this.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException(other.gre);
+      }
+    }
+
+    public shareEntityWithGroups_result deepCopy() {
+      return new shareEntityWithGroups_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = false;
+      this.gre = null;
+    }
+
+    public boolean isSuccess() {
+      return this.success;
+    }
+
+    public shareEntityWithGroups_result setSuccess(boolean success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public org.apache.airavata.sharing.registry.models.GovRegistryException getGre() {
+      return this.gre;
+    }
+
+    public shareEntityWithGroups_result setGre(org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+      this.gre = gre;
+      return this;
+    }
+
+    public void unsetGre() {
+      this.gre = null;
+    }
+
+    /** Returns true if field gre is set (has been assigned a value) and false otherwise */
+    public boolean isSetGre() {
+      return this.gre != null;
+    }
+
+    public void setGreIsSet(boolean value) {
+      if (!value) {
+        this.gre = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((Boolean)value);
+        }
+        break;
+
+      case GRE:
+        if (value == null) {
+          unsetGre();
+        } else {
+          setGre((org.apache.airavata.sharing.registry.models.GovRegistryException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return isSuccess();
+
+      case GRE:
+        return getGre();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      case GRE:
+        return isSetGre();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof shareEntityWithGroups_result)
+        return this.equals((shareEntityWithGroups_result)that);
+      return false;
+    }
+
+    public boolean equals(shareEntityWithGroups_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      boolean this_present_gre = true && this.isSetGre();
+      boolean that_present_gre = true && that.isSetGre();
+      if (this_present_gre || that_present_gre) {
+        if (!(this_present_gre && that_present_gre))
+          return false;
+        if (!this.gre.equals(that.gre))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_success = true;
+      list.add(present_success);
+      if (present_success)
+        list.add(success);
+
+      boolean present_gre = true && (isSetGre());
+      list.add(present_gre);
+      if (present_gre)
+        list.add(gre);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(shareEntityWithGroups_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetGre()).compareTo(other.isSetGre());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetGre()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.gre, other.gre);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("shareEntityWithGroups_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("gre:");
+      if (this.gre == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.gre);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class shareEntityWithGroups_resultStandardSchemeFactory implements SchemeFactory {
+      public shareEntityWithGroups_resultStandardScheme getScheme() {
+        return new shareEntityWithGroups_resultStandardScheme();
+      }
+    }
+
+    private static class shareEntityWithGroups_resultStandardScheme extends StandardScheme<shareEntityWithGroups_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, shareEntityWithGroups_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
+                struct.success = iprot.readBool();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 1: // GRE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+                struct.gre.read(iprot);
+                struct.setGreIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, shareEntityWithGroups_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeBool(struct.success);
+          oprot.writeFieldEnd();
+        }
+        if (struct.gre != null) {
+          oprot.writeFieldBegin(GRE_FIELD_DESC);
+          struct.gre.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class shareEntityWithGroups_resultTupleSchemeFactory implements SchemeFactory {
+      public shareEntityWithGroups_resultTupleScheme getScheme() {
+        return new shareEntityWithGroups_resultTupleScheme();
+      }
+    }
+
+    private static class shareEntityWithGroups_resultTupleScheme extends TupleScheme<shareEntityWithGroups_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, shareEntityWithGroups_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        if (struct.isSetGre()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetSuccess()) {
+          oprot.writeBool(struct.success);
+        }
+        if (struct.isSetGre()) {
+          struct.gre.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, shareEntityWithGroups_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.success = iprot.readBool();
+          struct.setSuccessIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+          struct.gre.read(iprot);
+          struct.setGreIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class revokeEntitySharingFromGroups_args implements org.apache.thrift.TBase<revokeEntitySharingFromGroups_args, revokeEntitySharingFromGroups_args._Fields>, java.io.Serializable, Cloneable, Comparable<revokeEntitySharingFromGroups_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("revokeEntitySharingFromGroups_args");
+
+    private static final org.apache.thrift.protocol.TField ENTITY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("entityId", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField GROUP_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("groupList", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField PERSSION_TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("perssionType", org.apache.thrift.protocol.TType.STRUCT, (short)3);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new revokeEntitySharingFromGroups_argsStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new revokeEntitySharingFromGroups_argsTupleSchemeFactory());
+    }
+
+    public String entityId; // required
+    public List<String> groupList; // required
+    public org.apache.airavata.sharing.registry.models.PermissionType perssionType; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      ENTITY_ID((short)1, "entityId"),
+      GROUP_LIST((short)2, "groupList"),
+      PERSSION_TYPE((short)3, "perssionType");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // ENTITY_ID
+            return ENTITY_ID;
+          case 2: // GROUP_LIST
+            return GROUP_LIST;
+          case 3: // PERSSION_TYPE
+            return PERSSION_TYPE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ENTITY_ID, new org.apache.thrift.meta_data.FieldMetaData("entityId", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.GROUP_LIST, new org.apache.thrift.meta_data.FieldMetaData("groupList", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
+      tmpMap.put(_Fields.PERSSION_TYPE, new org.apache.thrift.meta_data.FieldMetaData("perssionType", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.apache.airavata.sharing.registry.models.PermissionType.class)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(revokeEntitySharingFromGroups_args.class, metaDataMap);
+    }
+
+    public revokeEntitySharingFromGroups_args() {
+    }
+
+    public revokeEntitySharingFromGroups_args(
+      String entityId,
+      List<String> groupList,
+      org.apache.airavata.sharing.registry.models.PermissionType perssionType)
+    {
+      this();
+      this.entityId = entityId;
+      this.groupList = groupList;
+      this.perssionType = perssionType;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public revokeEntitySharingFromGroups_args(revokeEntitySharingFromGroups_args other) {
+      if (other.isSetEntityId()) {
+        this.entityId = other.entityId;
+      }
+      if (other.isSetGroupList()) {
+        List<String> __this__groupList = new ArrayList<String>(other.groupList);
+        this.groupList = __this__groupList;
+      }
+      if (other.isSetPerssionType()) {
+        this.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType(other.perssionType);
+      }
+    }
+
+    public revokeEntitySharingFromGroups_args deepCopy() {
+      return new revokeEntitySharingFromGroups_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.entityId = null;
+      this.groupList = null;
+      this.perssionType = null;
+    }
+
+    public String getEntityId() {
+      return this.entityId;
+    }
+
+    public revokeEntitySharingFromGroups_args setEntityId(String entityId) {
+      this.entityId = entityId;
+      return this;
+    }
+
+    public void unsetEntityId() {
+      this.entityId = null;
+    }
+
+    /** Returns true if field entityId is set (has been assigned a value) and false otherwise */
+    public boolean isSetEntityId() {
+      return this.entityId != null;
+    }
+
+    public void setEntityIdIsSet(boolean value) {
+      if (!value) {
+        this.entityId = null;
+      }
+    }
+
+    public int getGroupListSize() {
+      return (this.groupList == null) ? 0 : this.groupList.size();
+    }
+
+    public java.util.Iterator<String> getGroupListIterator() {
+      return (this.groupList == null) ? null : this.groupList.iterator();
+    }
+
+    public void addToGroupList(String elem) {
+      if (this.groupList == null) {
+        this.groupList = new ArrayList<String>();
+      }
+      this.groupList.add(elem);
+    }
+
+    public List<String> getGroupList() {
+      return this.groupList;
+    }
+
+    public revokeEntitySharingFromGroups_args setGroupList(List<String> groupList) {
+      this.groupList = groupList;
+      return this;
+    }
+
+    public void unsetGroupList() {
+      this.groupList = null;
+    }
+
+    /** Returns true if field groupList is set (has been assigned a value) and false otherwise */
+    public boolean isSetGroupList() {
+      return this.groupList != null;
+    }
+
+    public void setGroupListIsSet(boolean value) {
+      if (!value) {
+        this.groupList = null;
+      }
+    }
+
+    public org.apache.airavata.sharing.registry.models.PermissionType getPerssionType() {
+      return this.perssionType;
+    }
+
+    public revokeEntitySharingFromGroups_args setPerssionType(org.apache.airavata.sharing.registry.models.PermissionType perssionType) {
+      this.perssionType = perssionType;
+      return this;
+    }
+
+    public void unsetPerssionType() {
+      this.perssionType = null;
+    }
+
+    /** Returns true if field perssionType is set (has been assigned a value) and false otherwise */
+    public boolean isSetPerssionType() {
+      return this.perssionType != null;
+    }
+
+    public void setPerssionTypeIsSet(boolean value) {
+      if (!value) {
+        this.perssionType = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case ENTITY_ID:
+        if (value == null) {
+          unsetEntityId();
+        } else {
+          setEntityId((String)value);
+        }
+        break;
+
+      case GROUP_LIST:
+        if (value == null) {
+          unsetGroupList();
+        } else {
+          setGroupList((List<String>)value);
+        }
+        break;
+
+      case PERSSION_TYPE:
+        if (value == null) {
+          unsetPerssionType();
+        } else {
+          setPerssionType((org.apache.airavata.sharing.registry.models.PermissionType)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case ENTITY_ID:
+        return getEntityId();
+
+      case GROUP_LIST:
+        return getGroupList();
+
+      case PERSSION_TYPE:
+        return getPerssionType();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case ENTITY_ID:
+        return isSetEntityId();
+      case GROUP_LIST:
+        return isSetGroupList();
+      case PERSSION_TYPE:
+        return isSetPerssionType();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof revokeEntitySharingFromGroups_args)
+        return this.equals((revokeEntitySharingFromGroups_args)that);
+      return false;
+    }
+
+    public boolean equals(revokeEntitySharingFromGroups_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_entityId = true && this.isSetEntityId();
+      boolean that_present_entityId = true && that.isSetEntityId();
+      if (this_present_entityId || that_present_entityId) {
+        if (!(this_present_entityId && that_present_entityId))
+          return false;
+        if (!this.entityId.equals(that.entityId))
+          return false;
+      }
+
+      boolean this_present_groupList = true && this.isSetGroupList();
+      boolean that_present_groupList = true && that.isSetGroupList();
+      if (this_present_groupList || that_present_groupList) {
+        if (!(this_present_groupList && that_present_groupList))
+          return false;
+        if (!this.groupList.equals(that.groupList))
+          return false;
+      }
+
+      boolean this_present_perssionType = true && this.isSetPerssionType();
+      boolean that_present_perssionType = true && that.isSetPerssionType();
+      if (this_present_perssionType || that_present_perssionType) {
+        if (!(this_present_perssionType && that_present_perssionType))
+          return false;
+        if (!this.perssionType.equals(that.perssionType))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_entityId = true && (isSetEntityId());
+      list.add(present_entityId);
+      if (present_entityId)
+        list.add(entityId);
+
+      boolean present_groupList = true && (isSetGroupList());
+      list.add(present_groupList);
+      if (present_groupList)
+        list.add(groupList);
+
+      boolean present_perssionType = true && (isSetPerssionType());
+      list.add(present_perssionType);
+      if (present_perssionType)
+        list.add(perssionType);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(revokeEntitySharingFromGroups_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetEntityId()).compareTo(other.isSetEntityId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetEntityId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.entityId, other.entityId);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetGroupList()).compareTo(other.isSetGroupList());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetGroupList()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.groupList, other.groupList);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetPerssionType()).compareTo(other.isSetPerssionType());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPerssionType()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.perssionType, other.perssionType);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("revokeEntitySharingFromGroups_args(");
+      boolean first = true;
+
+      sb.append("entityId:");
+      if (this.entityId == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.entityId);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("groupList:");
+      if (this.groupList == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.groupList);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("perssionType:");
+      if (this.perssionType == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.perssionType);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      if (entityId == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'entityId' was not present! Struct: " + toString());
+      }
+      if (groupList == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'groupList' was not present! Struct: " + toString());
+      }
+      if (perssionType == null) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'perssionType' was not present! Struct: " + toString());
+      }
+      // check for sub-struct validity
+      if (perssionType != null) {
+        perssionType.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class revokeEntitySharingFromGroups_argsStandardSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromGroups_argsStandardScheme getScheme() {
+        return new revokeEntitySharingFromGroups_argsStandardScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromGroups_argsStandardScheme extends StandardScheme<revokeEntitySharingFromGroups_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, revokeEntitySharingFromGroups_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // ENTITY_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.entityId = iprot.readString();
+                struct.setEntityIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // GROUP_LIST
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list108 = iprot.readListBegin();
+                  struct.groupList = new ArrayList<String>(_list108.size);
+                  String _elem109;
+                  for (int _i110 = 0; _i110 < _list108.size; ++_i110)
+                  {
+                    _elem109 = iprot.readString();
+                    struct.groupList.add(_elem109);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setGroupListIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // PERSSION_TYPE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+                struct.perssionType.read(iprot);
+                struct.setPerssionTypeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, revokeEntitySharingFromGroups_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.entityId != null) {
+          oprot.writeFieldBegin(ENTITY_ID_FIELD_DESC);
+          oprot.writeString(struct.entityId);
+          oprot.writeFieldEnd();
+        }
+        if (struct.groupList != null) {
+          oprot.writeFieldBegin(GROUP_LIST_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.groupList.size()));
+            for (String _iter111 : struct.groupList)
+            {
+              oprot.writeString(_iter111);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        if (struct.perssionType != null) {
+          oprot.writeFieldBegin(PERSSION_TYPE_FIELD_DESC);
+          struct.perssionType.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class revokeEntitySharingFromGroups_argsTupleSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromGroups_argsTupleScheme getScheme() {
+        return new revokeEntitySharingFromGroups_argsTupleScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromGroups_argsTupleScheme extends TupleScheme<revokeEntitySharingFromGroups_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromGroups_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        oprot.writeString(struct.entityId);
+        {
+          oprot.writeI32(struct.groupList.size());
+          for (String _iter112 : struct.groupList)
+          {
+            oprot.writeString(_iter112);
+          }
+        }
+        struct.perssionType.write(oprot);
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromGroups_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        struct.entityId = iprot.readString();
+        struct.setEntityIdIsSet(true);
+        {
+          org.apache.thrift.protocol.TList _list113 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.groupList = new ArrayList<String>(_list113.size);
+          String _elem114;
+          for (int _i115 = 0; _i115 < _list113.size; ++_i115)
+          {
+            _elem114 = iprot.readString();
+            struct.groupList.add(_elem114);
+          }
+        }
+        struct.setGroupListIsSet(true);
+        struct.perssionType = new org.apache.airavata.sharing.registry.models.PermissionType();
+        struct.perssionType.read(iprot);
+        struct.setPerssionTypeIsSet(true);
+      }
+    }
+
+  }
+
+  public static class revokeEntitySharingFromGroups_result implements org.apache.thrift.TBase<revokeEntitySharingFromGroups_result, revokeEntitySharingFromGroups_result._Fields>, java.io.Serializable, Cloneable, Comparable<revokeEntitySharingFromGroups_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("revokeEntitySharingFromGroups_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
+    private static final org.apache.thrift.protocol.TField GRE_FIELD_DESC = new org.apache.thrift.protocol.TField("gre", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new revokeEntitySharingFromGroups_resultStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new revokeEntitySharingFromGroups_resultTupleSchemeFactory());
+    }
+
+    public boolean success; // required
+    public org.apache.airavata.sharing.registry.models.GovRegistryException gre; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      GRE((short)1, "gre");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // GRE
+            return GRE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
+      tmpMap.put(_Fields.GRE, new org.apache.thrift.meta_data.FieldMetaData("gre", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(revokeEntitySharingFromGroups_result.class, metaDataMap);
+    }
+
+    public revokeEntitySharingFromGroups_result() {
+    }
+
+    public revokeEntitySharingFromGroups_result(
+      boolean success,
+      org.apache.airavata.sharing.registry.models.GovRegistryException gre)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+      this.gre = gre;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public revokeEntitySharingFromGroups_result(revokeEntitySharingFromGroups_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+      if (other.isSetGre()) {
+        this.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException(other.gre);
+      }
+    }
+
+    public revokeEntitySharingFromGroups_result deepCopy() {
+      return new revokeEntitySharingFromGroups_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = false;
+      this.gre = null;
+    }
+
+    public boolean isSuccess() {
+      return this.success;
+    }
+
+    public revokeEntitySharingFromGroups_result setSuccess(boolean success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public org.apache.airavata.sharing.registry.models.GovRegistryException getGre() {
+      return this.gre;
+    }
+
+    public revokeEntitySharingFromGroups_result setGre(org.apache.airavata.sharing.registry.models.GovRegistryException gre) {
+      this.gre = gre;
+      return this;
+    }
+
+    public void unsetGre() {
+      this.gre = null;
+    }
+
+    /** Returns true if field gre is set (has been assigned a value) and false otherwise */
+    public boolean isSetGre() {
+      return this.gre != null;
+    }
+
+    public void setGreIsSet(boolean value) {
+      if (!value) {
+        this.gre = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((Boolean)value);
+        }
+        break;
+
+      case GRE:
+        if (value == null) {
+          unsetGre();
+        } else {
+          setGre((org.apache.airavata.sharing.registry.models.GovRegistryException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return isSuccess();
+
+      case GRE:
+        return getGre();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      case GRE:
+        return isSetGre();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof revokeEntitySharingFromGroups_result)
+        return this.equals((revokeEntitySharingFromGroups_result)that);
+      return false;
+    }
+
+    public boolean equals(revokeEntitySharingFromGroups_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      boolean this_present_gre = true && this.isSetGre();
+      boolean that_present_gre = true && that.isSetGre();
+      if (this_present_gre || that_present_gre) {
+        if (!(this_present_gre && that_present_gre))
+          return false;
+        if (!this.gre.equals(that.gre))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_success = true;
+      list.add(present_success);
+      if (present_success)
+        list.add(success);
+
+      boolean present_gre = true && (isSetGre());
+      list.add(present_gre);
+      if (present_gre)
+        list.add(gre);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(revokeEntitySharingFromGroups_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetGre()).compareTo(other.isSetGre());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetGre()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.gre, other.gre);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("revokeEntitySharingFromGroups_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("gre:");
+      if (this.gre == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.gre);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class revokeEntitySharingFromGroups_resultStandardSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromGroups_resultStandardScheme getScheme() {
+        return new revokeEntitySharingFromGroups_resultStandardScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromGroups_resultStandardScheme extends StandardScheme<revokeEntitySharingFromGroups_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, revokeEntitySharingFromGroups_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
+                struct.success = iprot.readBool();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 1: // GRE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.gre = new org.apache.airavata.sharing.registry.models.GovRegistryException();
+                struct.gre.read(iprot);
+                struct.setGreIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, revokeEntitySharingFromGroups_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeBool(struct.success);
+          oprot.writeFieldEnd();
+        }
+        if (struct.gre != null) {
+          oprot.writeFieldBegin(GRE_FIELD_DESC);
+          struct.gre.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class revokeEntitySharingFromGroups_resultTupleSchemeFactory implements SchemeFactory {
+      public revokeEntitySharingFromGroups_resultTupleScheme getScheme() {
+        return new revokeEntitySharingFromGroups_resultTupleScheme();
+      }
+    }
+
+    private static class revokeEntitySharingFromGroups_resultTupleScheme extends TupleScheme<revokeEntitySharingFromGroups_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromGroups_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        if (struct.isSetGre()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetSuccess()) {
+          oprot.writeBool(struct.success);
+        }
+        if (struct.isSetGre()) {
+          struct.gre.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, revokeEntitySharingFromGroups_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.success = iprot.readBool();
           struct.setSuccessIsSet(true);
         }
         if (incoming.get(1)) {

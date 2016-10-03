@@ -338,6 +338,7 @@ public class RepositoriesTest {
         sharing1.setPermissionTypeId(permissionType1Id);
         sharing1.setEntityId(entityId1);
         sharing1.setGroupId(userId2);
+        sharing1.setSharingType(SharingType.DIRECT);
 
         SharingRepository sharingRepository = new SharingRepository();
         sharing1 = sharingRepository.create(sharing1);
@@ -347,6 +348,7 @@ public class RepositoriesTest {
         sharing2.setPermissionTypeId(permissionType1Id);
         sharing2.setEntityId(entityId3);
         sharing2.setGroupId(groupId2);
+        sharing2.setSharingType(SharingType.DIRECT);
 
         sharingRepository.create(sharing2);
     }

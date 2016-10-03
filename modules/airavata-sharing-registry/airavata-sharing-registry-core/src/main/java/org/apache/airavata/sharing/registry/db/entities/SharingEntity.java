@@ -33,6 +33,9 @@ public class SharingEntity {
     private String permissionTypeId;
     private String entityId;
     private String groupId;
+    private String groupType;
+    private String sharingType;
+    private String inheritedPermissionTypeId;
     private Long createdTime;
     private Long updatedTime;
     private PermissionTypeEntity permissionTypeByPermissionTypeId;
@@ -66,6 +69,36 @@ public class SharingEntity {
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
+    }
+
+    @Basic
+    @Column(name = "GROUP_TYPE")
+    public String getGroupType() {
+        return groupType;
+    }
+
+    public void setGroupType(String groupType) {
+        this.groupType = groupType;
+    }
+
+    @Basic
+    @Column(name = "SHARING_TYPE")
+    public String getSharingType() {
+        return sharingType;
+    }
+
+    public void setSharingType(String sharingType) {
+        this.sharingType = sharingType;
+    }
+
+    @Basic
+    @Column(name = "INHERITED_PARENT_PERMISSION_ID")
+    public String getInheritedPermissionTypeId() {
+        return inheritedPermissionTypeId;
+    }
+
+    public void setInheritedPermissionTypeId(String inheritedPermissionTypeId) {
+        this.inheritedPermissionTypeId = inheritedPermissionTypeId;
     }
 
     @Basic

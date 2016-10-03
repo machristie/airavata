@@ -413,4 +413,32 @@ public class GovRegistryServerHandler implements GovRegistryService.Iface{
         }
         return hashtable;
     }
+
+    /**
+     * * Sharing Entity with Users and Groups
+     * *
+     *
+     * @param entityId
+     * @param userList
+     * @param permissionType
+     */
+    @Override
+    public boolean shareEntityWithUsers(String entityId, List<String> userList, PermissionType perssionType) throws GovRegistryException, TException {
+        return false;
+    }
+
+    @Override
+    public boolean revokeEntitySharingFromUsers(String entityId, List<String> userList, PermissionType perssionType) throws GovRegistryException, TException {
+        return false;
+    }
+
+    @Override
+    public boolean shareEntityWithGroups(String entityId, List<String> groupList, PermissionType perssionType) throws GovRegistryException, TException {
+        return false;
+    }
+
+    @Override
+    public boolean revokeEntitySharingFromGroups(String entityId, List<String> groupList, PermissionType perssionType) throws GovRegistryException, TException {
+        return false;
+    }
 }
