@@ -77,6 +77,7 @@ import org.apache.airavata.model.workspace.Project;
 import org.apache.airavata.registry.api.RegistryService;
 import org.apache.airavata.registry.api.client.RegistryServiceClientFactory;
 import org.apache.airavata.registry.api.exception.RegistryServiceException;
+import org.apache.airavata.resourcesetup.SSHKeyInstaller;
 import org.apache.airavata.sharing.registry.client.SharingRegistryServiceClientFactory;
 import org.apache.airavata.sharing.registry.models.*;
 import org.apache.airavata.sharing.registry.service.cpi.SharingRegistryService;
@@ -3716,6 +3717,41 @@ public class AiravataServerHandler implements Airavata.Iface {
         }
     }
 
+    @Override
+    @SecurityCheck
+    public boolean installKeyForUserComputeResourcePreference(AuthzToken authzToken, String userId, String gatewayId,
+                                                              String userComputeResourceId, String userPassword)
+            throws InvalidRequestException, AiravataClientException, AiravataSystemException, AuthorizationException, TException {
+
+        try {
+
+            // TODO: verify userId and gatewayId match token claims
+            UserResourceProfile userResourceProfile = getRegistryServiceClient().getUserResourceProfile(userId, gatewayId);
+            UserComputeResourcePreference userComputeResourcePreference = getRegistryServiceClient().getUserComputeResourcePreference(userId, gatewayId, userComputeResourceId);
+            String credentialToken = userResourceProfile.getCredentialStoreToken();
+            if (userComputeResourcePreference.getResourceSpecificCredentialStoreToken() != null) {
+                credentialToken = userComputeResourcePreference.getResourceSpecificCredentialStoreToken();
+            }
+            SSHCredential sshCredential = getCredentialStoreServiceClient().getSSHCredential(credentialToken, gatewayId);
+            String publicKey = sshCredential.getPublicKey();
+            // TODO: test case where username isn't provided
+            String username = userComputeResourcePreference.getLoginUserName();
+
+            ComputeResourceDescription computeResourceDescription = getRegistryServiceClient().getComputeResource(userComputeResourceId);
+            String hostname = computeResourceDescription.getHostName();
+
+            SSHKeyInstaller.install(username, userPassword, hostname, publicKey);
+
+            return true;
+        } catch(Exception e) {
+            logger.error("Failed to install public key for user's compute resource preference", e);
+            AiravataSystemException exception = new AiravataSystemException();
+            exception.setAiravataErrorType(AiravataErrorType.INTERNAL_ERROR);
+            exception.setMessage("Error while installing public key for user's compute resource preference. More info : " + e.getMessage());
+            throw exception;
+        }
+
+    }
 
 
     @Override

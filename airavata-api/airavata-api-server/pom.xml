@@ -151,6 +151,11 @@
             <artifactId>registry-api-stubs</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.airavata</groupId>
+            <artifactId>resource-setup</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

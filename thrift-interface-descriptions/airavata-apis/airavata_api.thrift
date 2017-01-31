@@ -3320,6 +3320,13 @@ service Airavata {
                 3: airavata_errors.AiravataSystemException ase,
                 4: airavata_errors.AuthorizationException ae)
 
+    bool installKeyForUserComputeResourcePreference(1: required security_model.AuthzToken authzToken,
+                2: required string userId, 3: required string gatewayId, 4: required string userComputeResourceId,
+                5: required string userPassword)
+        throws (1: airavata_errors.InvalidRequestException ire,
+                2: airavata_errors.AiravataClientException ace,
+                3: airavata_errors.AiravataSystemException ase,
+                4: airavata_errors.AuthorizationException ae)
 
 
 
