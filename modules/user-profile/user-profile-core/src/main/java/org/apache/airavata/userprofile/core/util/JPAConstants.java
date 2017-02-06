@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--*
+/*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,13 +17,13 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-* -->
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
-    <persistence-unit name="airavata_catalog">
-        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-        <class>org.apache.airavata.registry.core.entities.workspacecatalog.GatewayEntity</class>
-        <class>org.apache.airavata.registry.core.entities.workspacecatalog.NotificationEntity</class>
-        <class>org.apache.airavata.registry.core.entities.workspacecatalog.ProjectEntity</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    </persistence-unit>
-</persistence>
+ */
+
+package org.apache.airavata.userprofile.core.util;
+public class JPAConstants {
+	public static final String KEY_JDBC_URL = "user.profile.jdbc.url";
+	public static final String KEY_JDBC_USER = "user.profile.jdbc.user";
+	public static final String KEY_JDBC_PASSWORD = "user.profile.jdbc.password";
+	public static final String KEY_JDBC_DRIVER = "user.profile.jdbc.driver";
+    public static final String VALIDATION_QUERY = "validationQuery";
+}

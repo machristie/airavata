@@ -1,4 +1,4 @@
-package org.apache.airavata.registry.core.utils;
+package org.apache.airavata.userprofile.core.util;
 
 import org.apache.airavata.model.user.UserProfile;
 
